@@ -78,6 +78,7 @@ class MyAppState extends State<MyApp> {
     super.initState();
     checkUserId();
     debugPrint("hello world");
+    debugPrint("goodbye world");
     initPlatformState();
   }
 
