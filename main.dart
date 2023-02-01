@@ -53,8 +53,8 @@ void main() async {
       title: 'Weddy-Mobile',
       theme: themeData,
       routes: {
-        '/': (context) => MyApp(mobileDevice: mobileDevice),
-        //'/': (context) => BottomNavigationPage(),
+        //'/': (context) => MyApp(mobileDevice: mobileDevice),
+        '/': (context) => BottomNavigationPage(),
       },
     ));
   });
@@ -77,6 +77,7 @@ class MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     checkUserId();
+    debugPrint("hello world");
     initPlatformState();
   }
 
