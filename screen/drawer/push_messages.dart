@@ -18,9 +18,9 @@
  */
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:weddy_ceres/common/shimmer_loading.dart';
-import 'package:weddy_ceres/common/widget_factory.dart';
-import 'package:weddy_ceres/model/notice.dart';
+import 'package:weddynew/common/shimmer_loading.dart';
+import 'package:weddynew/common/widget_factory.dart';
+import 'package:weddynew/model/notice.dart';
 
 class PushMessageScreen extends StatefulWidget {
   const PushMessageScreen({Key? key}) : super(key: key);

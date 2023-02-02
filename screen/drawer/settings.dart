@@ -18,8 +18,8 @@
  */
 import 'package:flutter/material.dart';
 
-import 'package:weddy_ceres/common/widget_factory.dart';
-import 'package:weddy_ceres/model/vendor_service_detail.dart';
+import 'package:weddynew/common/widget_factory.dart';
+import 'package:weddynew/model/vendor_service_detail.dart';
 import 'package:settings_ui/settings_ui.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:auto_size_text/auto_size_text.dart';

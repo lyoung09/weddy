@@ -20,12 +20,12 @@ import 'dart:async';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:weddy_ceres/common/image_factory.dart';
-import 'package:weddy_ceres/common/screen_common_widget.dart';
-import 'package:weddy_ceres/common/shimmer_loading.dart';
-import 'package:weddy_ceres/common/widget_factory.dart';
+import 'package:weddynew/common/image_factory.dart';
+import 'package:weddynew/common/screen_common_widget.dart';
+import 'package:weddynew/common/shimmer_loading.dart';
+import 'package:weddynew/common/widget_factory.dart';
 
-import 'package:weddy_ceres/model/user_item.dart';
+import 'package:weddynew/model/user_item.dart';
 import '../../common/dummy_data.dart';
 import '../../common/local_utils.dart';
 import 'package:animated_flip_counter/animated_flip_counter.dart';
@@ -70,7 +70,7 @@ class BudgetSimulatorScreenState extends State<BudgetSimulatorScreen> {
         floatingActionButton: buildFloatingButton(),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         backgroundColor: Colors.white,
-        appBar: widgetFactory.createEmptyAppBar(),
+        appBar: widgetFactory.createEmptyAppBar(context),
         body: SingleChildScrollView(
             child: Container(
           color: widgetFactory.styler.tabScreenBackgroundColor,

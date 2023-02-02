@@ -18,18 +18,27 @@
  */
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:weddy_ceres/common/styler.dart';
+import 'package:weddynew/common/styler.dart';
+
+import '../resources/Colors.dart';
+import '../resources/Images.dart';
+import '../resources/Text.dart';
+import '../utils/custom_text_Field.dart';
 
 class WidgetFactory {
+  WidgetFactory();
+
   final Styler styler = Styler();
 
-  Widget createReturnToBackButton(context) {
+  Widget createReturnToBackButton(context, {GestureTapCallback? onTap}) {
     return Center(
       child: GestureDetector(
-        onTap: () {
-          Navigator.pop(context);
-        },
+        onTap: onTap ??
+            () {
+              Navigator.pop(context);
+            },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -44,17 +53,6 @@ class WidgetFactory {
           ],
         ),
       ),
-    );
-  }
-
-  Widget createAuthScreenBackground(context) {
-    return Container(
-      height: MediaQuery.of(context).size.height / 3.5,
-      decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [
-        Theme.of(context).colorScheme.primary,
-        Theme.of(context).colorScheme.secondary
-      ], begin: Alignment.topLeft, end: Alignment.bottomRight)),
     );
   }
 
@@ -77,26 +75,34 @@ class WidgetFactory {
               )),
           const SizedBox(height: 4),
           widget,
-          const SizedBox(height: 10),
+          const SizedBox(height: 26),
         ]));
   }
 
-  PreferredSizeWidget createDefaultAppBar(context, {required title}) {
-    return AppBar(
-      title: AutoSizeText(
-        title,
-        style: Theme.of(context).textTheme.headline1,
-      ),
-      bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(1.0),
-          child: Container(
-            color: Colors.white,
-            height: 1.0,
-          )),
-    );
+  PreferredSizeWidget createDefaultAppBar(context,
+      {String? title, bool visibleBack = true}) {
+    return PreferredSize(
+        preferredSize: const Size.fromHeight(52),
+        child: AppBar(
+          leading: visibleBack
+              ? IconButton(
+                  icon: Images.getIcon('icon_arrow', color: ColorItems.salmon),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                )
+              : null,
+          title: title != null
+              ? AutoSizeText(
+                  title,
+                  style: Theme.of(context).textTheme.headlineSmall,
+                )
+              : null,
+          elevation: 0,
+        ));
   }
 
-  AppBar createEmptyAppBar() {
+  PreferredSizeWidget createEmptyAppBar(context) {
     return AppBar(
       toolbarHeight: 0,
       elevation: 0,
@@ -104,70 +110,114 @@ class WidgetFactory {
     );
   }
 
-  Widget createDefaultTextField(
+  Widget createDefaultTextField(context,
+      {Widget? suffix,
+      Widget? suffixWidget,
+      String? hintText,
+      String? suffixText,
+      String? errorText,
+      bool passwordField = false,
+      TextInputType inputType = TextInputType.text,
+      List<TextInputFormatter>? inputFormatters,
+      ValueChanged<String>? onChanged,
+      required TextEditingController textEditingController,
+      String? labelText,
+      bool disable = false,
+      GestureTapCallback? onTap}) {
+    return SizedBox(
+        height: 42,
+        child: TextField(
+            obscureText: passwordField,
+            decoration: InputDecoration(
+                contentPadding: const EdgeInsets.only(left: 18, right: 18),
+                focusedBorder: const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(18)),
+                    borderSide:
+                        BorderSide(color: ColorItems.secondarySpaceCadet)),
+                enabledBorder: const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(18)),
+                    borderSide:
+                        BorderSide(color: ColorItems.secondarySpanishGray)),
+                suffixText: suffixText,
+                suffixIcon: suffix != null
+                    ? Padding(padding: const EdgeInsets.all(9), child: suffix)
+                    : null,
+                suffix: suffixWidget,
+                labelText: labelText,
+                labelStyle: TextItems.title4
+                    .copyWith(color: ColorItems.secondarySpanishGray),
+                hintText: hintText,
+                hintStyle: TextItems.title4
+                    .copyWith(color: ColorItems.secondarySpanishGray),
+                errorText: errorText),
+            keyboardType: inputType,
+            inputFormatters: inputFormatters,
+            controller: textEditingController,
+            style: TextItems.title4,
+            onChanged: onChanged,
+            onTap: onTap,
+            focusNode: disable ? AlwaysDisabledFocusNode() : null,
+            enableInteractiveSelection: !disable));
+  }
+
+  Widget createPasswordTextField(context,
+      {required bool passwordField,
+      required TextEditingController textEditingController,
+      required VoidCallback onIconPressed,
+      String? labelText,
+      String? hintText}) {
+    Widget icon;
+    if (passwordField) {
+      icon = Images.getIcon('icon_password_hide',
+          color: ColorItems.secondarySpanishGray);
+    } else {
+      icon = Images.getIcon('icon_password_show', color: ColorItems.salmon);
+    }
+
+    return createDefaultTextField(context,
+        suffix: IconButton(
+            padding: const EdgeInsets.all(0),
+            icon: icon,
+            onPressed: onIconPressed),
+        passwordField: passwordField,
+        labelText: labelText,
+        hintText: hintText,
+        textEditingController: textEditingController);
+  }
+
+  Widget createDisabledTextField(
     context, {
     Widget? suffix,
-    bool passwordField = false,
+    GestureTapCallback? onTap,
+    ValueChanged<String>? onChanged,
     required TextEditingController textEditingController,
     required String labelText,
   }) {
-    return TextField(
-      obscureText: passwordField,
-      decoration: InputDecoration(
-        focusedBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey)),
-        enabledBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: styler.underlineColor),
-        ),
-        suffixIcon: suffix,
+    return createDefaultTextField(context,
         labelText: labelText,
-        labelStyle: Theme.of(context).textTheme.subtitle1,
-      ),
-      keyboardType: TextInputType.text,
-      controller: textEditingController,
-      style: const TextStyle(color: Colors.grey),
-    );
-  }
-
-  Widget createPasswordTextField(
-      {required textEditController,
-      required Function onPressed,
-      required String labelText,
-      required String hintText,
-      required Color iconColor}) {
-    return TextField(
-      decoration: InputDecoration(
-        suffix: IconButton(
-          icon: Icon(color: iconColor, size: 22, Icons.search),
-          onPressed: onPressed as void Function(),
-        ),
-        focusedBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.lightBlueAccent, width: 2.0)),
-        enabledBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(color: Color(0xFFcccccc)),
-        ),
-        labelText: labelText,
-        labelStyle: const TextStyle(color: Colors.blueGrey),
-      ),
-      keyboardType: TextInputType.text,
-      controller: textEditController,
-      style: const TextStyle(color: Colors.grey),
-    );
+        textEditingController: textEditingController,
+        suffix: suffix,
+        onTap: onTap,
+        disable: true);
   }
 
   Widget createTextButton({
     required String text,
-    Color? textColor = Colors.lightBlue,
-    double? fontSize = 16,
+    Color textColor = ColorItems.spaceCadet,
+    double fontSize = TextSize.heading4,
+    bool bold = true,
+    TextStyle? style,
     required Function onPressed,
   }) {
     return GestureDetector(
       onTap: onPressed as void Function(),
       child: AutoSizeText(text,
-          style: TextStyle(
-              color: textColor,
-              fontSize: fontSize,
-              fontWeight: FontWeight.bold)),
+          style: style ??
+              TextItems.heading4.copyWith(
+                  color: textColor,
+                  fontSize: fontSize,
+                  fontWeight:
+                      bold == true ? FontWeight.bold : FontWeight.normal)),
     );
   }
 
@@ -190,7 +240,8 @@ class WidgetFactory {
       {required String title,
       required IconData icon,
       required Color iconColor,
-      required Widget value}) {
+      required Widget value,
+      bool wrapWidth = false}) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
@@ -204,9 +255,9 @@ class WidgetFactory {
         ),
         Wrap(children: [
           SizedBox(
-              width: MediaQuery.of(context).size.width / 5,
+              width: wrapWidth ? null : MediaQuery.of(context).size.width / 5,
               child: AutoSizeText(title,
-                  style: Theme.of(context).textTheme.bodyText2))
+                  style: Theme.of(context).textTheme.bodyMedium))
         ]),
         const SizedBox(width: 10),
         Container(child: value),
@@ -231,49 +282,130 @@ class WidgetFactory {
 
   Widget createStatusLabel(
       {required String title,
-      required Color textColor,
-      required Color backgroundColor}) {
+      Color? textColor,
+      Color? backgroundColor,
+      Color? borderColor}) {
     return Container(
         margin: const EdgeInsets.all(2),
         padding: const EdgeInsets.all(2),
         decoration: BoxDecoration(
-            color: Colors.transparent, borderRadius: BorderRadius.circular(10)),
+            color: backgroundColor,
+            border: borderColor != null
+                ? Border.all(width: 1, color: borderColor)
+                : null,
+            borderRadius: BorderRadius.circular(10)),
         child: AutoSizeText(title,
-            style: TextStyle(
-                color: textColor, fontSize: 14, fontWeight: FontWeight.bold)));
+            style: TextItems.body2
+                .copyWith(color: textColor ?? ColorItems.secondarySpaceCadet)));
   }
 
   Widget createDefaultButton(context,
-      {Color iconColor = Colors.white,
-      required String text,
-      required Function onPressed,
-      required IconData icon}) {
-    return ElevatedButton.icon(
-      style: ButtonStyle(
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(18.0))),
-          backgroundColor: MaterialStateProperty.resolveWith<Color>(
-            (Set<MaterialState> states) {
-              if (states.contains(MaterialState.pressed)) {
-                return Theme.of(context).colorScheme.primary;
-              } else if (states.contains(MaterialState.disabled)) {
-                return Colors.grey;
-              }
-              return Theme.of(context).colorScheme.secondary;
-            },
-          ),
-          padding: MaterialStateProperty.all(const EdgeInsets.all(10))),
-      onPressed: onPressed as void Function(),
-      label: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8),
-        child: AutoSizeText(
-          text,
-          style: styler.buttonTextStyle,
-          textAlign: TextAlign.center,
+      {required String text,
+      required Function? onPressed,
+      Color? textColor,
+      Color? background,
+      Color? border,
+      Color? iconColor = Colors.white,
+      IconData? icon}) {
+    ButtonStyle style = ButtonStyle(
+        elevation: MaterialStateProperty.all(0),
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(100))),
+        side: MaterialStateProperty.resolveWith<BorderSide?>((states) {
+          if (border == null) {
+            return null;
+          } else {
+            return BorderSide(color: border);
+          }
+        }),
+        backgroundColor: MaterialStateProperty.resolveWith<Color>(
+          (Set<MaterialState> states) {
+            if (states.contains(MaterialState.pressed)) {
+              return background ?? Theme.of(context).colorScheme.primary;
+            } else if (states.contains(MaterialState.disabled)) {
+              return ColorItems.mysticRose;
+            }
+            return background ?? Theme.of(context).colorScheme.primary;
+          },
         ),
-      ),
-      icon: Icon(icon, color: iconColor),
+        padding: MaterialStateProperty.all(const EdgeInsets.all(14)));
+    Widget label = Row(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        AutoSizeText(
+          text,
+          style:
+              TextItems.heading3.copyWith(color: textColor ?? ColorItems.white),
+          textAlign: TextAlign.center,
+        )
+      ],
     );
+
+    if (icon == null) {
+      return ElevatedButton(
+          style: style,
+          onPressed: onPressed != null ? onPressed as void Function() : null,
+          child: label);
+    } else {
+      return ElevatedButton.icon(
+        style: style,
+        onPressed: onPressed != null ? onPressed as void Function() : null,
+        label: label,
+        icon: Icon(icon, color: iconColor),
+      );
+    }
   }
+
+  Widget createDefaultTextButton(context,
+          {required String text,
+          required Function? onPressed,
+          Color? backgroundColor}) =>
+      TextButton(
+          style: ButtonStyle(
+              shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(100.0),
+              )),
+              backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                  (Set<MaterialState> states) =>
+                      states.contains(MaterialState.disabled)
+                          ? ColorItems.mysticRose
+                          : (backgroundColor ??
+                              Theme.of(context).colorScheme.primary)),
+              overlayColor: MaterialStateProperty.all(Colors.transparent)),
+          onPressed: onPressed != null ? onPressed as void Function() : null,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 14.0),
+            child: AutoSizeText(
+              text,
+              style: TextItems.heading3.copyWith(color: ColorItems.white),
+              textAlign: TextAlign.center,
+            ),
+          ));
+
+  Widget createProgressIndicator() => const Center(
+        child: CircularProgressIndicator(),
+      );
+
+  Widget createBottomSheetContainer(BuildContext context, Widget? child,
+          {EdgeInsetsGeometry? margin, double? height}) =>
+      Positioned(
+          width: MediaQuery.of(context).size.width,
+          height: height,
+          bottom: 0,
+          child: Container(
+            decoration: const BoxDecoration(
+                color: ColorItems.white,
+                borderRadius: BorderRadius.vertical(top: Radius.circular(44)),
+                boxShadow: [
+                  BoxShadow(
+                    color: ColorItems.shadow,
+                    offset: Offset(0, -5),
+                    blurRadius: 30,
+                  )
+                ]),
+            child: Container(
+                margin: margin ?? const EdgeInsets.fromLTRB(36, 16, 36, 16),
+                child: child),
+          ));
 }

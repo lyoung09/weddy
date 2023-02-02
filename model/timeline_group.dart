@@ -1,4 +1,4 @@
-import 'package:weddy_ceres/model/timeline_item.dart';
+import 'package:weddynew/model/timeline_item.dart';
 
 class TimelineGroup {
   late int groupId;

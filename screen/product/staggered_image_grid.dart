@@ -19,8 +19,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:full_screen_image_null_safe/full_screen_image_null_safe.dart';
-import 'package:weddy_ceres/common/cache_image_network.dart';
-import 'package:weddy_ceres/common/widget_factory.dart';
+import 'package:weddynew/common/cache_image_network.dart';
+import 'package:weddynew/common/widget_factory.dart';
 
 class StaggeredImageGrid extends StatelessWidget {
   final List<String> imageList;

@@ -1,8 +1,12 @@
-import 'package:weddy_ceres/common/consts.dart';
-import 'package:weddy_ceres/common/service_category_enum.dart';
-import 'package:weddy_ceres/model/user_item.dart';
-import 'package:weddy_ceres/model/family_link.dart';
+import 'package:weddynew/common/consts.dart';
+import 'package:weddynew/common/service_category_enum.dart';
+import 'package:weddynew/model/user_item.dart';
+import 'package:weddynew/model/family_link.dart';
 
+import '../model/checklist_detail.dart';
+import '../model/division.dart';
+import '../model/purchase/contract.dart';
+import '../model/vendor_category.dart';
 import '../model/vendor_service.dart';
 import '../model/timeline_group.dart';
 import '../model/timeline_item.dart';
@@ -152,33 +156,33 @@ class DummyData {
 
     TimelineGroup group1 = TimelineGroup(
         groupId: 1,
-        title: "D-365",
+        title: "D - 365",
         subTitle: "결혼 준비를 시작하세요",
         remainingDays: -365,
         items: items1);
 
     TimelineGroup group2 = TimelineGroup(
         groupId: 2,
-        title: "D-180",
+        title: "D - 180",
         subTitle: "결혼식 준비중입니다",
         remainingDays: -180,
         items: items2);
 
     TimelineGroup group3 = TimelineGroup(
         groupId: 3,
-        title: "D-60",
+        title: "D - 60",
         subTitle: "결혼식 준비중입니다",
         remainingDays: -60,
         items: items3);
     TimelineGroup group4 = TimelineGroup(
         groupId: 4,
-        title: "D-30",
+        title: "D - 30",
         subTitle: "결혼식 준비중입니다",
         remainingDays: -30,
         items: items3);
     TimelineGroup group5 = TimelineGroup(
         groupId: 5,
-        title: "D-Day",
+        title: "D - Day",
         subTitle: "결혼식 당일입니다",
         remainingDays: 0,
         items: items3);
@@ -190,6 +194,37 @@ class DummyData {
     groups.add(group5);
 
     return groups;
+  }
+
+  static List<VendorCategoryItem> getCategoryData() {
+    return [
+      VendorCategoryItem(ServiceCategory.weddingHall.code,
+          ServiceCategory.weddingHall.displayName, true, false),
+      VendorCategoryItem(ServiceCategory.studio.code,
+          ServiceCategory.studio.displayName, true, false),
+      VendorCategoryItem(ServiceCategory.snap.code,
+          ServiceCategory.snap.displayName, false, false),
+      VendorCategoryItem(ServiceCategory.video.code,
+          ServiceCategory.video.displayName, false, false),
+      VendorCategoryItem(ServiceCategory.makeup.code,
+          ServiceCategory.makeup.displayName, false, false),
+      VendorCategoryItem(ServiceCategory.dress.code,
+          ServiceCategory.dress.displayName, true, false),
+      VendorCategoryItem(ServiceCategory.robes.code,
+          ServiceCategory.robes.displayName, false, false),
+      VendorCategoryItem(ServiceCategory.bouquet.code,
+          ServiceCategory.bouquet.displayName, false, false),
+      VendorCategoryItem(ServiceCategory.weddingCar.code,
+          ServiceCategory.weddingCar.displayName, false, false),
+      VendorCategoryItem(ServiceCategory.hanbok.code,
+          ServiceCategory.hanbok.displayName, false, true),
+      VendorCategoryItem(ServiceCategory.weddingCard.code,
+          ServiceCategory.weddingCard.displayName, false, true),
+      VendorCategoryItem(ServiceCategory.music.code,
+          ServiceCategory.music.displayName, false, true),
+      VendorCategoryItem(ServiceCategory.businessBuffet.code,
+          ServiceCategory.businessBuffet.displayName, false, true)
+    ];
   }
 
   static List<VendorService> getProductData() {
@@ -225,7 +260,7 @@ class DummyData {
             '없이 자랑처럼 경, 속의 쉬이 가을로 이 릴케 봅니다. 마디씩 한 가을 이름과, 차 다하지 청춘이 책상을 거외다. 무덤 언덕 때 이네들은 멀리 된 있습니다. ',
       ),
       VendorService(
-        id: 17,
+        id: 18,
         serviceCategory: ServiceCategory.video,
         vendorName: "마이영상",
         price: 3000000,
@@ -235,7 +270,7 @@ class DummyData {
             '없이 자랑처럼 경, 속의 쉬이 가을로 이 릴케 봅니다. 마디씩 한 가을 이름과, 차 다하지 청춘이 책상을 거외다. 무덤 언덕 때 이네들은 멀리 된 있습니다. ',
       ),
       VendorService(
-        id: 16,
+        id: 17,
         serviceCategory: ServiceCategory.makeup,
         vendorName: "(주)마이메이크업",
         price: 500000,
@@ -245,7 +280,7 @@ class DummyData {
             '없이 자랑처럼 경, 속의 쉬이 가을로 이 릴케 봅니다. 마디씩 한 가을 이름과, 차 다하지 청춘이 책상을 거외다. 무덤 언덕 때 이네들은 멀리 된 있습니다. ',
       ),
       VendorService(
-        id: 15,
+        id: 16,
         serviceCategory: ServiceCategory.dress,
         vendorName: "(주)드레스",
         price: 3000000,
@@ -255,7 +290,7 @@ class DummyData {
             '없이 자랑처럼 경, 속의 쉬이 가을로 이 릴케 봅니다. 마디씩 한 가을 이름과, 차 다하지 청춘이 책상을 거외다. 무덤 언덕 때 이네들은 멀리 된 있습니다. ',
       ),
       VendorService(
-        id: 14,
+        id: 15,
         serviceCategory: ServiceCategory.robes,
         vendorName: "(주)함께예복",
         price: 1000000,
@@ -265,7 +300,7 @@ class DummyData {
             '없이 자랑처럼 경, 속의 쉬이 가을로 이 릴케 봅니다. 마디씩 한 가을 이름과, 차 다하지 청춘이 책상을 거외다. 무덤 언덕 때 이네들은 멀리 된 있습니다. ',
       ),
       VendorService(
-        id: 13,
+        id: 14,
         serviceCategory: ServiceCategory.bouquet,
         vendorName: "(주)굿부케",
         price: 300000,
@@ -275,7 +310,7 @@ class DummyData {
             '없이 자랑처럼 경, 속의 쉬이 가을로 이 릴케 봅니다. 마디씩 한 가을 이름과, 차 다하지 청춘이 책상을 거외다. 무덤 언덕 때 이네들은 멀리 된 있습니다. ',
       ),
       VendorService(
-        id: 12,
+        id: 13,
         serviceCategory: ServiceCategory.weddingCar,
         vendorName: "모두의카",
         price: 20000,
@@ -295,7 +330,7 @@ class DummyData {
             '없이 자랑처럼 경, 속의 쉬이 가을로 이 릴케 봅니다. 마디씩 한 가을 이름과, 차 다하지 청춘이 책상을 거외다. 무덤 언덕 때 이네들은 멀리 된 있습니다. ',
       ),
       VendorService(
-        id: 12,
+        id: 11,
         serviceCategory: ServiceCategory.weddingCard,
         vendorName: "가자청첩장",
         price: 20000,
@@ -305,7 +340,7 @@ class DummyData {
             '없이 자랑처럼 경, 속의 쉬이 가을로 이 릴케 봅니다. 마디씩 한 가을 이름과, 차 다하지 청춘이 책상을 거외다. 무덤 언덕 때 이네들은 멀리 된 있습니다. ',
       ),
       VendorService(
-        id: 12,
+        id: 10,
         serviceCategory: ServiceCategory.music,
         vendorName: "한누리연주",
         price: 20000,
@@ -315,7 +350,7 @@ class DummyData {
             '없이 자랑처럼 경, 속의 쉬이 가을로 이 릴케 봅니다. 마디씩 한 가을 이름과, 차 다하지 청춘이 책상을 거외다. 무덤 언덕 때 이네들은 멀리 된 있습니다. ',
       ),
       VendorService(
-        id: 12,
+        id: 9,
         serviceCategory: ServiceCategory.businessBuffet,
         vendorName: "원더풀출장뷔페",
         isImportant: false,
@@ -483,5 +518,33 @@ class DummyData {
         linkType: 1,
         familyName: "하객"));
     return items;
+  }
+
+  static List<Division> getDivisions() {
+    return [
+      Division(code: 1, displayName: "서울"),
+      Division(code: 2, displayName: "경기도"),
+      Division(code: 3, displayName: "경상도"),
+      Division(code: 4, displayName: "전라도"),
+      Division(code: 5, displayName: "충청도"),
+      Division(code: 6, displayName: "강원도"),
+      Division(code: 7, displayName: "제주도"),
+      Division(code: 10, displayName: "대구광역시"),
+      Division(code: 11, displayName: "인천광역시"),
+      Division(code: 12, displayName: "광주광역시"),
+      Division(code: 13, displayName: "울산광역시"),
+      Division(code: 14, displayName: "대전광역시"),
+      Division(code: 15, displayName: "부산광역시")
+    ];
+  }
+
+  static List<String> getWeddingStyles() {
+    return ["일반 웨딩", "스몰 웨딩", "전통", "기타"];
+  }
+
+  static ChecklistDetail getChecklistDetail() {
+    final List<ContractHistoryItem> contractHistory = [];
+
+    return ChecklistDetail(0, '강남 웨딩홀', '서울시 강남구');
   }
 }

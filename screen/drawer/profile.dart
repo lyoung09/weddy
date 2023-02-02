@@ -18,11 +18,11 @@
  */
 import 'package:flutter/material.dart';
 
-import 'package:weddy_ceres/common/widget_factory.dart';
-import 'package:weddy_ceres/model/vendor_service_detail.dart';
-import 'package:weddy_ceres/screen/auth/signin.dart';
+import 'package:weddynew/common/widget_factory.dart';
+import 'package:weddynew/model/vendor_service_detail.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:weddy_ceres/screen/drawer/call_center.dart';
+import 'package:weddynew/screen/auth/signin/signin_page.dart';
+import 'package:weddynew/screen/drawer/call_center.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -74,10 +74,8 @@ class ProfileScreenState extends State<ProfileScreen> {
                 icon: Iconsax.logout,
                 text: '로그아웃',
                 onPressed: () => {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const SigninScreen()))
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) => SignInPage()))
                     }),
           ),
           ListTile(
@@ -87,10 +85,8 @@ class ProfileScreenState extends State<ProfileScreen> {
                 text: '회원탈퇴',
                 onPressed: () => {
                       // 확인 팝업 후 탈퇴
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const SigninScreen()))
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) => SignInPage()))
                     }),
           ),
         ])));

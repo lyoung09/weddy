@@ -22,11 +22,11 @@ import 'package:animated_flip_counter/animated_flip_counter.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:weddy_ceres/common/image_factory.dart';
-import 'package:weddy_ceres/common/shimmer_loading.dart';
-import 'package:weddy_ceres/screen/family/family_link.dart';
+import 'package:weddynew/common/image_factory.dart';
+import 'package:weddynew/common/shimmer_loading.dart';
+import 'package:weddynew/screen/family/family_link.dart';
 
-import 'package:weddy_ceres/screen/product/product_details.dart';
+import 'package:weddynew/screen/product/product_details.dart';
 import '../../common/dummy_data.dart';
 import '../../common/local_utils.dart';
 import '../../model/user_item.dart';
@@ -71,7 +71,7 @@ class CheckListScreenState extends State<CheckListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: widgetFactory.createEmptyAppBar(),
+        appBar: widgetFactory.createEmptyAppBar(context),
         backgroundColor: Colors.white,
         body: RefreshIndicator(
             onRefresh: refreshData,

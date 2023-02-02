@@ -1,7 +1,7 @@
 import 'dart:ffi';
 
-import 'package:weddy_ceres/repository/service/auth_service.dart';
-import 'package:weddy_ceres/repository/service/biz_api_service.dart';
+import 'package:weddynew/service/auth_service.dart';
+import 'package:weddynew/service/biz_api_service.dart';
 
 import '../apis/preferences.dart';
 import '../apis/result.dart';
@@ -59,7 +59,7 @@ class AuthRepository {
     return service.verifySms(phoneNumber, pinCode);
   }
 
-  Future<Result<void>> getUserProfile() {
+  Future<Result<UserProfile>> getUserProfile() {
     return bizService.getUserProfile().then((result) async {
       if (result.isSuccess) {
         final profile = await dao.getProfile();

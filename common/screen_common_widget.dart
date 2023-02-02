@@ -19,6 +19,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
+import '../resources/Colors.dart';
+
 class ScreenCommonWidget {
   Future showProgressDialog(context) {
     return showDialog(
@@ -47,32 +49,41 @@ class ScreenCommonWidget {
     ));
   }
 
-  void showBottomSheet(context, {required Widget contents}) {
+  void showBottomSheet(context, {required Widget contents, bool visibleTopController = true, String? title}) {
     showModalBottomSheet<void>(
       context: context,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(24), topRight: Radius.circular(24)),
+            topLeft: Radius.circular(30), topRight: Radius.circular(30)),
       ),
       builder: (BuildContext context) {
+        Widget child = contents;
+
+        if (title != null && title.isNotEmpty) {
+          child = Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              AutoSizeText(title, style: Theme.of(context).textTheme.headline2),
+              const SizedBox(height: 16),
+              contents
+            ],
+          );
+        }
         return Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            FractionallySizedBox(
-              widthFactor: 0.25,
-              child: Container(
-                margin: const EdgeInsets.symmetric(
-                  vertical: 12.0,
-                ),
-                child: Container(
-                  height: 5.0,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.primary,
-                    borderRadius: const BorderRadius.all(Radius.circular(2.5)),
-                  ),
-                ),
+            visibleTopController
+            ? Container(
+              width: 52,
+              height: 4,
+              margin: const EdgeInsets.symmetric(vertical: 10.0),
+              decoration: const BoxDecoration(
+                color: ColorItems.secondarySpanishGray,
+                borderRadius: BorderRadius.all(Radius.circular(3)),
               ),
-            ),
-            Padding(padding: const EdgeInsets.all(8), child: contents),
+            )
+            : const SizedBox(height: 19),
+            Padding(padding: const EdgeInsets.only(left: 24, right: 24, bottom: 30), child: child),
           ],
         );
       },
@@ -112,7 +123,12 @@ class ScreenCommonWidget {
     }
   }
 
-  Future showConfirmDialog(context, {required message}) {
+  Future showConfirmDialog(context,
+      {required message,
+      String? icon,
+      String? buttonText,
+      Color? buttonColor,
+      Function? onConfirm}) {
     // set up the buttons
     Widget cancelButton = TextButton(
         onPressed: () {

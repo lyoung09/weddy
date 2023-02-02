@@ -1,7 +1,7 @@
 // import 'dart:math';
 
-// import 'package:weddy_ceres/common/dummy_data.dart';
-// import 'package:weddy_ceres/model/timeline_models.dart';
+// import 'package:weddynew/common/dummy_data.dart';
+// import 'package:weddynew/model/timeline_models.dart';
 
 // class ScheduleRepository {
 //   Future<WeddingTimeline> getTimeline() async {

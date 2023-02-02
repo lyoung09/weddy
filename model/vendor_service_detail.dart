@@ -1,5 +1,5 @@
-import 'package:weddy_ceres/model/pricing_model.dart';
-import 'package:weddy_ceres/model/vendor_service.dart';
+import 'package:weddynew/model/pricing_model.dart';
+import 'package:weddynew/model/vendor_service.dart';
 
 class VendorServiceDetail {
   late int id;

@@ -21,7 +21,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:weddy_ceres/common/widget_factory.dart';
+import 'package:weddynew/common/widget_factory.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 

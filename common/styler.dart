@@ -17,7 +17,7 @@
  * from Weddy.
  */
 import 'package:flutter/material.dart';
-import 'package:weddy_ceres/common/consts.dart';
+import 'package:weddynew/common/consts.dart';
 import 'package:iconsax/iconsax.dart';
 
 class Styler {

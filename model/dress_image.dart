@@ -1,4 +1,4 @@
-import 'package:weddy_ceres/model/vendor_service.dart';
+import 'package:weddynew/model/vendor_service.dart';
 
 class BrideDressImage {
   int imageId;

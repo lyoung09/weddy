@@ -17,14 +17,14 @@
  * from Weddy.
  */
 import 'package:flutter/material.dart';
-import 'package:weddy_ceres/common/screen_common_widget.dart';
+import 'package:weddynew/common/screen_common_widget.dart';
 
-import 'package:weddy_ceres/common/widget_factory.dart';
-import 'package:weddy_ceres/model/vendor_service.dart';
-import 'package:weddy_ceres/model/pricing_model.dart';
-import 'package:weddy_ceres/model/vendor_service_detail.dart';
-import 'package:weddy_ceres/screen/product/staggered_image_grid.dart';
-import 'package:weddy_ceres/screen/product/youtube_player.dart';
+import 'package:weddynew/common/widget_factory.dart';
+import 'package:weddynew/model/vendor_service.dart';
+import 'package:weddynew/model/pricing_model.dart';
+import 'package:weddynew/model/vendor_service_detail.dart';
+import 'package:weddynew/screen/product/staggered_image_grid.dart';
+import 'package:weddynew/screen/product/youtube_player.dart';
 import '../../common/local_utils.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:auto_size_text/auto_size_text.dart';

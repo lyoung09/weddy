@@ -50,11 +50,12 @@ class DefaultFirebaseOptions {
     projectId: 'weddyweddy',
     authDomain: 'weddyweddy.firebaseapp.com',
     storageBucket: 'weddyweddy.appspot.com',
+    measurementId: 'G-4X32WBB1Y6',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCTLIdWdI997Pq0Z9xvEKfVz-jgZpRhPxE',
-    appId: '1:354589477987:android:02966711cfb06c6b273c56',
+    appId: '1:354589477987:android:7ac6dba56d90065c273c56',
     messagingSenderId: '354589477987',
     projectId: 'weddyweddy',
     storageBucket: 'weddyweddy.appspot.com',
@@ -62,20 +63,22 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyD9iAWf0jibk3hAYG3oHsEO9WihoG194mI',
-    appId: '1:354589477987:ios:b93c7c6b0d13a8e1273c56',
+    appId: '1:354589477987:ios:5643ad88a006b5e9273c56',
     messagingSenderId: '354589477987',
     projectId: 'weddyweddy',
     storageBucket: 'weddyweddy.appspot.com',
+    androidClientId: '354589477987-ji20c4epnl16m034te8a66hhl145odu7.apps.googleusercontent.com',
     iosClientId: '354589477987-4jfku7d1uglqp2se8efn9ret2ml9i2il.apps.googleusercontent.com',
     iosBundleId: 'com.weddy.weddy',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyD9iAWf0jibk3hAYG3oHsEO9WihoG194mI',
-    appId: '1:354589477987:ios:b93c7c6b0d13a8e1273c56',
+    appId: '1:354589477987:ios:5643ad88a006b5e9273c56',
     messagingSenderId: '354589477987',
     projectId: 'weddyweddy',
     storageBucket: 'weddyweddy.appspot.com',
+    androidClientId: '354589477987-ji20c4epnl16m034te8a66hhl145odu7.apps.googleusercontent.com',
     iosClientId: '354589477987-4jfku7d1uglqp2se8efn9ret2ml9i2il.apps.googleusercontent.com',
     iosBundleId: 'com.weddy.weddy',
   );

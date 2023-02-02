@@ -21,10 +21,10 @@ import 'dart:async';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
-import 'package:weddy_ceres/common/screen_common_widget.dart';
-import 'package:weddy_ceres/common/shimmer_loading.dart';
+import 'package:weddynew/common/screen_common_widget.dart';
+import 'package:weddynew/common/shimmer_loading.dart';
 
-import 'package:weddy_ceres/model/family_link.dart';
+import 'package:weddynew/model/family_link.dart';
 import '../../common/dummy_data.dart';
 import '../../common/widget_factory.dart';
 import 'package:url_launcher/url_launcher.dart';

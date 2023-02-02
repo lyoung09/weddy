@@ -1,6 +1,6 @@
-import 'package:weddy_ceres/model/vendor_service_detail.dart';
-import 'package:weddy_ceres/repository/safe_api.dart';
-import 'package:weddy_ceres/repository/service/vendor_api_service.dart';
+import 'package:weddynew/model/vendor_service_detail.dart';
+import 'package:weddynew/repository/safe_api.dart';
+import 'package:weddynew/service/vendor_api_service.dart';
 
 import '../apis/result.dart';
 import '../common/dummy_data.dart';

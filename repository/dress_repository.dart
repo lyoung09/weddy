@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:weddy_ceres/repository/service/dress_api_service.dart';
+import 'package:weddynew/service/dress_api_service.dart';
 
 import '../common/dummy_data.dart';
 import '../model/dress_image.dart';

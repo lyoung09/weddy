@@ -1,4 +1,4 @@
-import 'package:weddy_ceres/common/service_category_enum.dart';
+import 'package:weddynew/common/service_category_enum.dart';
 
 class VendorService {
   late int id;

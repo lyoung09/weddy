@@ -17,7 +17,7 @@
  * from Weddy.
  */
 import 'package:flutter/material.dart';
-import 'package:weddy_ceres/common/consts.dart';
+import 'package:weddynew/common/consts.dart';
 
 const Color primaryThemeColor = Color(0xFFeb6052);
 const Color secondaryThemeColor = Color(0xFFf99697);

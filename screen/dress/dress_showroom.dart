@@ -20,15 +20,15 @@ import 'dart:async';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:weddy_ceres/common/cache_image_network.dart';
-import 'package:weddy_ceres/common/dummy_data.dart';
-import 'package:weddy_ceres/common/image_factory.dart';
-import 'package:weddy_ceres/common/screen_common_widget.dart';
-import 'package:weddy_ceres/common/shimmer_loading.dart';
-import 'package:weddy_ceres/model/dress_image.dart';
-import 'package:weddy_ceres/model/vendor_service.dart';
+import 'package:weddynew/common/cache_image_network.dart';
+import 'package:weddynew/common/dummy_data.dart';
+import 'package:weddynew/common/image_factory.dart';
+import 'package:weddynew/common/screen_common_widget.dart';
+import 'package:weddynew/common/shimmer_loading.dart';
+import 'package:weddynew/model/dress_image.dart';
+import 'package:weddynew/model/vendor_service.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:weddy_ceres/screen/product/product_details.dart';
+import 'package:weddynew/screen/product/product_details.dart';
 
 import '../../common/widget_factory.dart';
 
@@ -70,7 +70,7 @@ class DressShowroomScreenState extends State<DressShowroomScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: widgetFactory.createEmptyAppBar(),
+        appBar: widgetFactory.createEmptyAppBar(context),
         backgroundColor: Colors.white,
         body: RefreshIndicator(
             onRefresh: refreshData,

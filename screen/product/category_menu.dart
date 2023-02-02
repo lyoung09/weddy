@@ -20,15 +20,17 @@ import 'dart:async';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:weddy_ceres/common/image_factory.dart';
-import 'package:weddy_ceres/screen/bookmark/vendor_bookmark.dart';
-import 'package:weddy_ceres/screen/product/product_search.dart';
+import 'package:weddynew/common/image_factory.dart';
+import 'package:weddynew/screen/bookmark/vendor_bookmark.dart';
+import 'package:weddynew/screen/product/product_search.dart';
 
 import '../../common/dummy_data.dart';
 import '../../model/vendor_service.dart';
 import '../../common/widget_factory.dart';
 import '../../common/service_category_enum.dart';
 import 'package:iconsax/iconsax.dart';
+
+import '../do_product/product_search_page.dart';
 
 class CategoryMenuScreen extends StatefulWidget {
   const CategoryMenuScreen({Key? key}) : super(key: key);
@@ -67,7 +69,7 @@ class CategoryMenuScreenState extends State<CategoryMenuScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: widgetFactory.createEmptyAppBar(),
+        appBar: widgetFactory.createEmptyAppBar(context),
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
             child: Container(
@@ -181,7 +183,7 @@ class CategoryMenuScreenState extends State<CategoryMenuScreen> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => ProductSearchScreen(
+                  builder: (context) => ProductSearchPage(
                       title: productData.serviceCategory.displayName)));
         },
         child: Card(

@@ -19,14 +19,14 @@
 import 'dart:async';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:weddy_ceres/common/image_factory.dart';
-import 'package:weddy_ceres/common/local_utils.dart';
-import 'package:weddy_ceres/common/screen_common_widget.dart';
-import 'package:weddy_ceres/common/shimmer_loading.dart';
-import 'package:weddy_ceres/model/vendor_bookmark.dart';
+import 'package:weddynew/common/image_factory.dart';
+import 'package:weddynew/common/local_utils.dart';
+import 'package:weddynew/common/screen_common_widget.dart';
+import 'package:weddynew/common/shimmer_loading.dart';
+import 'package:weddynew/model/vendor_bookmark.dart';
 
-import 'package:weddy_ceres/model/vendor_service.dart';
-import 'package:weddy_ceres/screen/product/product_details.dart';
+import 'package:weddynew/model/vendor_service.dart';
+import 'package:weddynew/screen/product/product_details.dart';
 import '../../common/dummy_data.dart';
 import '../../common/widget_factory.dart';
 import 'package:iconsax/iconsax.dart';
