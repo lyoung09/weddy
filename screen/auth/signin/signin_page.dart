@@ -32,7 +32,12 @@ class SignInPage extends BaseBlocListenerPage<AuthBloc, AuthState> {
 
   @override
   Widget buildPage(BuildContext context, Widget blocBody) {
-    return Scaffold(backgroundColor: Colors.white, body: blocBody);
+    return WillPopScope(
+      onWillPop: () async {
+        return false;
+      },
+      child: Scaffold(backgroundColor: Colors.white, body: blocBody),
+    );
   }
 
   @override

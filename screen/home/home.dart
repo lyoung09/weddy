@@ -17,22 +17,21 @@
  * from Weddy.
  */
 import 'package:flutter/material.dart';
-import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/services.dart';
 
 import 'package:weddynew/common/widget_factory.dart';
 
-import 'package:weddynew/screen/budget/budget_simulator.dart';
-import 'package:weddynew/screen/drawer/memo.dart';
-import 'package:weddynew/screen/drawer/notices.dart';
-import 'package:weddynew/screen/drawer/profile.dart';
-import 'package:weddynew/screen/drawer/push_messages.dart';
-import 'package:weddynew/screen/drawer/settings.dart';
-import 'package:weddynew/screen/dress/dress_showroom.dart';
+import 'package:weddynew/screen/home/scrap/scrap_page.dart';
+import 'package:weddynew/screen/home/simulation/simulation_page.dart';
+import 'package:weddynew/screen/home/timeline/timeline_page.dart';
+import 'package:weddynew/screen/home/young_timeline/timelineScreenYoung.dart';
+import 'package:weddynew/screen/home/young_timeline/timelineYoung.dart';
 import 'package:weddynew/screen/product/category_menu.dart';
+import '../../resources/Colors.dart';
 import '../checklist/check_list.dart';
 import 'budget/budget_simulator_page.dart';
 import 'category/category_page.dart';
+import 'category/detail/vendor_detail_page.dart';
 import 'dress/dress_showroom_page.dart';
 import 'timeline/timeline.dart';
 import 'package:iconsax/iconsax.dart';
@@ -40,9 +39,9 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:badges/badges.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
-
+  HomePage({Key? key, this.index}) : super(key: key);
   static const String routeName = "/home_page";
+  int? index;
 
   @override
   HomePageState createState() => HomePageState();
@@ -64,9 +63,9 @@ class HomePageState extends State<HomePage> {
 
   // todo 고객유형에 따라 분리된
   final List<Widget> contentPages = <Widget>[
-    const TimelinePage(),
-    BudgetSimulatorPage(),
-    const CheckListScreen(),
+    TimelineYoung(),
+    const SimulationPage(),
+    ScrapPage(),
     CategoryPage(),
     DressShowroomPage(),
   ];
@@ -76,8 +75,15 @@ class HomePageState extends State<HomePage> {
     // set initial pages for navigation to home page
     // tabPageController = PageController(initialPage: 0);
     // tabPageController.addListener(handleTabSelection);
-    appBarTitle = appBarTitleItems[0];
+    debugPrint(widget.index.toString());
+    widget.index != null || widget.index != 0
+        ? appBarTitle = appBarTitleItems[widget.index!]
+        : appBarTitle = appBarTitleItems[0];
+    // appBarTitle = appBarTitleItems[0];
 
+    widget.index != null || widget.index != 0
+        ? tabIndex = widget.index!
+        : tabIndex = 0;
     super.initState();
   }
 
@@ -93,30 +99,42 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      backgroundColor: Colors.transparent,
-      drawerEnableOpenDragGesture: false,
-      appBar: createAppBar(),
-      drawer: createDrawer(),
-      body: contentPages.elementAt(tabIndex),
-      bottomNavigationBar: ConvexAppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        style: TabStyle.react,
-        activeColor: Theme.of(context).colorScheme.primary,
-        color: Theme.of(context).colorScheme.secondary,
-        items: const [
-          TabItem(icon: Iconsax.home5),
-          TabItem(icon: Iconsax.calculator5),
-          TabItem(icon: Iconsax.note5),
-          TabItem(icon: Iconsax.shop5),
-          TabItem(icon: Iconsax.gallery_favorite5),
-        ],
-        initialActiveIndex: 0, //optional, default as 0
-        onTap: (int i) {
-          tapNavigateToTaget(i);
-        },
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        backgroundColor: Colors.transparent,
+        drawerEnableOpenDragGesture: false,
+        //appBar:createAppBar(),
+        //drawer: createDrawer(),
+        body: contentPages.elementAt(tabIndex),
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.white,
+          elevation: 0,
+          //style: TabStyle.react,
+          //activeColor: Theme.of(context).colorScheme.primary,
+          selectedItemColor: ColorItems.spaceCadet,
+          unselectedItemColor: ColorItems.secondarySpanishGray,
+          showSelectedLabels: true,
+          showUnselectedLabels: true,
+          selectedFontSize: 10,
+          currentIndex: tabIndex,
+          unselectedFontSize: 10,
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Iconsax.home5), label: '홈'),
+            BottomNavigationBarItem(
+                icon: Icon(Iconsax.calculator5), label: '시뮬레이션'),
+            BottomNavigationBarItem(icon: Icon(Iconsax.note5), label: '스크랩'),
+            BottomNavigationBarItem(icon: Icon(Iconsax.shop5), label: '판매사'),
+            BottomNavigationBarItem(
+                icon: Icon(Iconsax.gallery_favorite5), label: '쇼룸'),
+          ],
+          onTap: (int i) {
+            setState(() {
+              tabIndex = i;
+            });
+          },
+        ),
       ),
     );
   }
@@ -144,111 +162,6 @@ class HomePageState extends State<HomePage> {
       title: AutoSizeText(appBarTitle,
           style: widgetFactory.styler.tabAppbarTitleStyle),
     );
-  }
-
-  Drawer createDrawer() {
-    return Drawer(
-        backgroundColor: Colors.white,
-        child: ListView(padding: EdgeInsets.zero, children: [
-          DrawerHeader(
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                image: DecorationImage(
-                    fit: BoxFit.scaleDown,
-                    image: AssetImage('assets/images/drawer_back.png')),
-              ),
-              child: Stack(children: const [
-                CircleAvatar(
-                  backgroundColor: Colors.white,
-                  maxRadius: 32,
-                  backgroundImage: AssetImage('assets/images/logo.png'),
-                ),
-              ])),
-          ListTile(
-            title: Center(
-              child: widgetFactory.createTextButton(
-                  text: '내 프로필',
-                  onPressed: () => {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const ProfileScreen()))
-                      }),
-            ),
-          ),
-          ListTile(
-            title: Center(
-              child: widgetFactory.createTextButton(
-                  text: '알림 메시지',
-                  onPressed: () => {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const PushMessageScreen()))
-                      }),
-            ),
-          ),
-          ListTile(
-            title: Center(
-              child: widgetFactory.createTextButton(
-                  text: '나의 메모',
-                  onPressed: () => {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const MemoScreen()))
-                      }),
-            ),
-          ),
-          ListTile(
-            title: Center(
-              child: widgetFactory.createTextButton(
-                  text: '앱 설정',
-                  onPressed: () => {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const SettingsScreen()))
-                      }),
-            ),
-          ),
-          ListTile(
-            title: Center(
-              child: widgetFactory.createTextButton(
-                  text: '공지사항',
-                  onPressed: () => {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const NoticeScreen()))
-                      }),
-            ),
-          ),
-          ListTile(
-              title: Center(
-            child: widgetFactory.createTextButton(
-                text: '오픈소스 라이센스',
-                onPressed: () => {
-                      showLicensePage(
-                          context: context,
-                          useRootNavigator: true,
-                          applicationName: 'Weddy App',
-                          applicationVersion: '1.0.0',
-                          applicationLegalese: '\u{a9} 2022, Weddy')
-                    }),
-          )),
-          const SizedBox(height: 4),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              AutoSizeText(
-                'My Wedding Design',
-                style: Theme.of(context).textTheme.headline6,
-              ),
-            ],
-          ),
-        ]));
   }
 
   void tapNavigateToTaget(index) {

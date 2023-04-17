@@ -44,42 +44,40 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyB50Dj23-uRMO9IAoB7P7eFA9V_y8uvRds',
-    appId: '1:354589477987:web:78ba0c1368cdd7ed273c56',
-    messagingSenderId: '354589477987',
-    projectId: 'weddyweddy',
-    authDomain: 'weddyweddy.firebaseapp.com',
-    storageBucket: 'weddyweddy.appspot.com',
-    measurementId: 'G-4X32WBB1Y6',
+    apiKey: 'AIzaSyCJDNlGo84Y1rzZBcfHwjRmIhCH-LrhjVU',
+    appId: '1:129761713814:web:61b544960e4cd03ed1ecb7',
+    messagingSenderId: '129761713814',
+    projectId: 'weddy-430d7',
+    authDomain: 'weddy-430d7.firebaseapp.com',
+    storageBucket: 'weddy-430d7.appspot.com',
+    measurementId: 'G-SWV0ZMKMTW',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCTLIdWdI997Pq0Z9xvEKfVz-jgZpRhPxE',
-    appId: '1:354589477987:android:7ac6dba56d90065c273c56',
-    messagingSenderId: '354589477987',
-    projectId: 'weddyweddy',
-    storageBucket: 'weddyweddy.appspot.com',
+    apiKey: 'AIzaSyBZAdQFxlqzcRGLr-y6CSsszZUrinrnbMo',
+    appId: '1:129761713814:android:12995ab70bac956cd1ecb7',
+    messagingSenderId: '129761713814',
+    projectId: 'weddy-430d7',
+    storageBucket: 'weddy-430d7.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyD9iAWf0jibk3hAYG3oHsEO9WihoG194mI',
-    appId: '1:354589477987:ios:5643ad88a006b5e9273c56',
-    messagingSenderId: '354589477987',
-    projectId: 'weddyweddy',
-    storageBucket: 'weddyweddy.appspot.com',
-    androidClientId: '354589477987-ji20c4epnl16m034te8a66hhl145odu7.apps.googleusercontent.com',
-    iosClientId: '354589477987-4jfku7d1uglqp2se8efn9ret2ml9i2il.apps.googleusercontent.com',
+    apiKey: 'AIzaSyDTdAWPp-XRqwJGZKs5Bwy0_5K8L3Fntys',
+    appId: '1:129761713814:ios:ee387454d16e804ed1ecb7',
+    messagingSenderId: '129761713814',
+    projectId: 'weddy-430d7',
+    storageBucket: 'weddy-430d7.appspot.com',
+    iosClientId: '129761713814-cfau1taivp47jjjeqciq1stkr75nb179.apps.googleusercontent.com',
     iosBundleId: 'com.weddy.weddy',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyD9iAWf0jibk3hAYG3oHsEO9WihoG194mI',
-    appId: '1:354589477987:ios:5643ad88a006b5e9273c56',
-    messagingSenderId: '354589477987',
-    projectId: 'weddyweddy',
-    storageBucket: 'weddyweddy.appspot.com',
-    androidClientId: '354589477987-ji20c4epnl16m034te8a66hhl145odu7.apps.googleusercontent.com',
-    iosClientId: '354589477987-4jfku7d1uglqp2se8efn9ret2ml9i2il.apps.googleusercontent.com',
+    apiKey: 'AIzaSyDTdAWPp-XRqwJGZKs5Bwy0_5K8L3Fntys',
+    appId: '1:129761713814:ios:ee387454d16e804ed1ecb7',
+    messagingSenderId: '129761713814',
+    projectId: 'weddy-430d7',
+    storageBucket: 'weddy-430d7.appspot.com',
+    iosClientId: '129761713814-cfau1taivp47jjjeqciq1stkr75nb179.apps.googleusercontent.com',
     iosBundleId: 'com.weddy.weddy',
   );
 }

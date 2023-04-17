@@ -1,36 +1,86 @@
-// import 'dart:math';
+import 'dart:math';
 
-// import 'package:weddynew/common/dummy_data.dart';
-// import 'package:weddynew/model/timeline_models.dart';
+import 'package:flutter/foundation.dart';
+import 'package:weddynew/common/dummy_data.dart';
+import 'package:weddynew/service/schedul_service.dart';
 
-// class ScheduleRepository {
-//   Future<WeddingTimeline> getTimeline() async {
-//     final dummyData = DummyData.getTimelineData();
+import '../apis/biz/app_biz.pb.dart';
+import '../apis/result.dart';
 
-//     Random random = Random();
-//     int index = random.nextInt(dummyData.length);
+import '../model/timeline_model.dart';
+import '../service/biz_api_service.dart';
 
-//     final List<TimelineItem> nextTaskItems = [
-//       dummyData[index].items[0],
-//       dummyData[index].items[1],
-//       dummyData[index].items[2]
-//     ];
+class ScheduleRepository {
+  const ScheduleRepository(
+      //this.service,
+      this.bizService);
 
-//     return WeddingTimeline(nextTaskItems, dummyData, 0.6, 180);
-//   }
+  //final ScheduleService service;
+  final BizApiService bizService;
+  Future<WeddingTimeLine> getTimeline() async {
+    final dummyData = DummyData.getTimelineData();
 
-//   Future<WeddingTimeline> getGuidebook() async {
-//     final dummyData = DummyData.getTimelineData();
+    Random random = Random();
+    int index = random.nextInt(dummyData.length);
 
-//     Random random = Random();
-//     int index = random.nextInt(dummyData.length);
+    final List<TimeLineItem> nextTaskItems = [
+      dummyData[index].items[0],
+      dummyData[index].items[1],
+      dummyData[index].items[2]
+    ];
 
-//     final List<TimelineItem> nextTaskItems = [
-//       dummyData[index].items[0],
-//       dummyData[index].items[1],
-//       dummyData[index].items[2]
-//     ];
+    return WeddingTimeLine(nextTaskItems, dummyData, 0.6, 180);
+  }
 
-//     return WeddingTimeline(nextTaskItems, dummyData, 0.6, 180);
-//   }
-// }
+  Future<Result<TimeLineResponse>> getTimelineResponse() async {
+    return bizService.getTimelinGroup();
+  }
+
+  Future<Result<ModifyTimelineResponse>> saveIsCheckedRequest(
+      bool isChecked, TimelineItem item, int groupId) async {
+    return bizService.saveIsChecked(isChecked, item, groupId).then((result) {
+      if (result is Success) {
+        return result;
+      } else {
+        return result;
+      }
+    });
+  }
+
+  Future<Result<ModifyTimelineResponse>> saveIsEnabledRequest(
+      bool isEnabled, TimelineItem item, int groupId) async {
+    return bizService.saveIsEnabled(isEnabled, item, groupId).then((result) {
+      if (result is Success) {
+        return result;
+      } else {
+        return result;
+      }
+    });
+  }
+
+  Future<Result<ModifyTimelineResponse>> saveMemoRequest(
+      String memo, TimelineItem item, int groupId) async {
+    return bizService.saveMemo(memo, item, groupId).then((result) {
+      if (result is Success) {
+        return result;
+      } else {
+        return result;
+      }
+    });
+  }
+
+  Future<WeddingTimeLine> getGuidebook() async {
+    final dummyData = DummyData.getTimelineData();
+
+    Random random = Random();
+    int index = random.nextInt(dummyData.length);
+
+    final List<TimeLineItem> nextTaskItems = [
+      dummyData[index].items[0],
+      dummyData[index].items[1],
+      dummyData[index].items[2]
+    ];
+
+    return WeddingTimeLine(nextTaskItems, dummyData, 0.6, 180);
+  }
+}

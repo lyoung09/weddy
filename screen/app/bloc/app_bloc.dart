@@ -3,9 +3,12 @@ import 'dart:io';
 import 'package:android_id/android_id.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:weddynew/screen/app/WeddyApp.dart';
+import 'package:weddynew/screen/auth/signin/signin_page.dart';
 
 import '../../../apis/preferences.dart';
 import '../../../base/bloc/base_bloc.dart';
@@ -15,15 +18,18 @@ import '../../../main.dart';
 import '../../../model/mobile_device.dart';
 import '../../../repository/auth_repository.dart';
 import '../../../utils/logger.dart';
+import '../../home/home.dart';
 import 'app_event.dart';
 import 'app_state.dart';
 
 class AppBloc extends BaseBloc<InitAppEvent, AppState> {
   AppBloc() : super(AppState()) {
     on<InitAppEvent>(_initApp);
+    on<LogoutAppEvent>(_logout);
   }
 
-  final MobileDevice _mobileDevice = MobileDevice(isAndroid: false, uuid: '', isIos: false);
+  final MobileDevice _mobileDevice =
+      MobileDevice(isAndroid: false, uuid: '', isIos: false);
   final DeviceInfoPlugin _deviceInfoPlugin = DeviceInfoPlugin();
   final _androidIdPlugin = const AndroidId();
   final PreferencesCustom _preferences = getIt.get();
@@ -36,7 +42,13 @@ class AppBloc extends BaseBloc<InitAppEvent, AppState> {
     await _initPlatformState();
     await _initFCMListener();
     await _updateUserProfile();
-    emit(state.copyWith(status: BlocStatus.success, isLoggedIn: _preferences.accessToken.isNotEmpty));
+    emit(state.copyWith(
+        status: BlocStatus.success,
+        isLoggedIn: _preferences.accessToken.isNotEmpty));
+  }
+
+  void _logout(LogoutAppEvent event, Emitter<AppState> emit) async {
+    emit(state.copyWith(status: BlocStatus.success, isLoggedIn: false));
   }
 
   Future<void> _initPlatformState() async {
@@ -131,7 +143,7 @@ class AppBloc extends BaseBloc<InitAppEvent, AppState> {
       );
       var iOSNotiDetails = const IOSNotificationDetails();
       var details =
-      NotificationDetails(android: androidNotiDetails, iOS: iOSNotiDetails);
+          NotificationDetails(android: androidNotiDetails, iOS: iOSNotiDetails);
       if (notification != null) {
         flutterLocalNotificationsPlugin.show(
           notification.hashCode,

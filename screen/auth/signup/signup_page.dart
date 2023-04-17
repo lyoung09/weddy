@@ -34,7 +34,7 @@ class SignupPage extends BaseBlocListenerPage<SignupBloc, BaseBlocState> {
   @override
   Widget buildPage(BuildContext context, Widget blocBody) {
     return Scaffold(
-        appBar: widgetFactory.createDefaultAppBar(context),
+        appBar: widgetFactory.createDefaultAppBar(context, title: "회원가입"),
         backgroundColor: Colors.white,
         body: blocBody);
   }

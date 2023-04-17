@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'profile_state.dart';
 
@@ -19,6 +19,11 @@ mixin _$ProfileState {
   BlocStatus get status => throw _privateConstructorUsedError;
   UserProfile get profile => throw _privateConstructorUsedError;
   ProfileDisplayType get displayType => throw _privateConstructorUsedError;
+  String? get id => throw _privateConstructorUsedError;
+  String? get password => throw _privateConstructorUsedError;
+  String? get name => throw _privateConstructorUsedError;
+  String? get phoneNumber => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ProfileStateCopyWith<ProfileState> get copyWith =>
@@ -32,7 +37,14 @@ abstract class $ProfileStateCopyWith<$Res> {
       _$ProfileStateCopyWithImpl<$Res, ProfileState>;
   @useResult
   $Res call(
-      {BlocStatus status, UserProfile profile, ProfileDisplayType displayType});
+      {BlocStatus status,
+      UserProfile profile,
+      ProfileDisplayType displayType,
+      String? id,
+      String? password,
+      String? name,
+      String? phoneNumber,
+      String? email});
 }
 
 /// @nodoc
@@ -51,6 +63,11 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
     Object? status = null,
     Object? profile = null,
     Object? displayType = null,
+    Object? id = freezed,
+    Object? password = freezed,
+    Object? name = freezed,
+    Object? phoneNumber = freezed,
+    Object? email = freezed,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -65,6 +82,26 @@ class _$ProfileStateCopyWithImpl<$Res, $Val extends ProfileState>
           ? _value.displayType
           : displayType // ignore: cast_nullable_to_non_nullable
               as ProfileDisplayType,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      password: freezed == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -78,7 +115,14 @@ abstract class _$$_ProfileStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {BlocStatus status, UserProfile profile, ProfileDisplayType displayType});
+      {BlocStatus status,
+      UserProfile profile,
+      ProfileDisplayType displayType,
+      String? id,
+      String? password,
+      String? name,
+      String? phoneNumber,
+      String? email});
 }
 
 /// @nodoc
@@ -95,6 +139,11 @@ class __$$_ProfileStateCopyWithImpl<$Res>
     Object? status = null,
     Object? profile = null,
     Object? displayType = null,
+    Object? id = freezed,
+    Object? password = freezed,
+    Object? name = freezed,
+    Object? phoneNumber = freezed,
+    Object? email = freezed,
   }) {
     return _then(_$_ProfileState(
       status: null == status
@@ -109,6 +158,26 @@ class __$$_ProfileStateCopyWithImpl<$Res>
           ? _value.displayType
           : displayType // ignore: cast_nullable_to_non_nullable
               as ProfileDisplayType,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String?,
+      password: freezed == password
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -119,7 +188,12 @@ class _$_ProfileState implements _ProfileState {
   _$_ProfileState(
       {this.status = BlocStatus.none,
       this.profile = UserProfile.empty,
-      this.displayType = ProfileDisplayType.readOnly});
+      this.displayType = ProfileDisplayType.readOnly,
+      this.id,
+      this.password,
+      this.name,
+      this.phoneNumber,
+      this.email});
 
   @override
   @JsonKey()
@@ -130,10 +204,20 @@ class _$_ProfileState implements _ProfileState {
   @override
   @JsonKey()
   final ProfileDisplayType displayType;
+  @override
+  final String? id;
+  @override
+  final String? password;
+  @override
+  final String? name;
+  @override
+  final String? phoneNumber;
+  @override
+  final String? email;
 
   @override
   String toString() {
-    return 'ProfileState(status: $status, profile: $profile, displayType: $displayType)';
+    return 'ProfileState(status: $status, profile: $profile, displayType: $displayType, id: $id, password: $password, name: $name, phoneNumber: $phoneNumber, email: $email)';
   }
 
   @override
@@ -144,11 +228,19 @@ class _$_ProfileState implements _ProfileState {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.profile, profile) || other.profile == profile) &&
             (identical(other.displayType, displayType) ||
-                other.displayType == displayType));
+                other.displayType == displayType) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.password, password) ||
+                other.password == password) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber) &&
+            (identical(other.email, email) || other.email == email));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, profile, displayType);
+  int get hashCode => Object.hash(runtimeType, status, profile, displayType, id,
+      password, name, phoneNumber, email);
 
   @JsonKey(ignore: true)
   @override
@@ -161,7 +253,12 @@ abstract class _ProfileState implements ProfileState {
   factory _ProfileState(
       {final BlocStatus status,
       final UserProfile profile,
-      final ProfileDisplayType displayType}) = _$_ProfileState;
+      final ProfileDisplayType displayType,
+      final String? id,
+      final String? password,
+      final String? name,
+      final String? phoneNumber,
+      final String? email}) = _$_ProfileState;
 
   @override
   BlocStatus get status;
@@ -169,6 +266,16 @@ abstract class _ProfileState implements ProfileState {
   UserProfile get profile;
   @override
   ProfileDisplayType get displayType;
+  @override
+  String? get id;
+  @override
+  String? get password;
+  @override
+  String? get name;
+  @override
+  String? get phoneNumber;
+  @override
+  String? get email;
   @override
   @JsonKey(ignore: true)
   _$$_ProfileStateCopyWith<_$_ProfileState> get copyWith =>

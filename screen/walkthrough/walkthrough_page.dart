@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:page_view_indicators/circle_page_indicator.dart';
 
 import '../../common/widget_factory.dart';
@@ -19,7 +20,6 @@ class WalkthroughPage extends StatefulWidget {
 
 class WalkthroughState extends State<WalkthroughPage> {
   final _backgroundPageController = PageController(initialPage: 0);
-  final _sheetPageController = PageController(initialPage: 0);
   final _currentPageNotifier = ValueNotifier<int>(0);
   final _currentPageProvider = GenericProvider<int>(initValue: 0);
   final _progressProvider = GenericProvider<double>(initValue: 0.0);
@@ -33,147 +33,177 @@ class WalkthroughState extends State<WalkthroughPage> {
 
     _backgroundPageController.addListener(() {
       if (_isBackgroundTouchControlled) {
-        _sheetPageController.jumpTo(_backgroundPageController.offset);
         _progressProvider
             .setValue((_start + _backgroundPageController.offset) / _end);
-      }
-    });
-    _sheetPageController.addListener(() {
-      if (!_isBackgroundTouchControlled) {
-        _backgroundPageController.jumpTo(_sheetPageController.offset);
-        _progressProvider
-            .setValue((_start + _sheetPageController.offset) / _end);
       }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    WidgetFactory widgetFactory = WidgetFactory();
     _start = MediaQuery.of(context).size.width;
     _end = MediaQuery.of(context).size.width * 3;
     _progressProvider.setValue((_start + 0.0) / _end);
-
     return Scaffold(
-        backgroundColor: Colors.white,
-        body: Stack(
-          children: <Widget>[
-            GestureDetector(
-              onHorizontalDragDown: (details) {
-                _isBackgroundTouchControlled = true;
-              },
-              child: PageView(
-                controller: _backgroundPageController,
-                children: [
-                  createBackground('beautiful_wedding_details_1'),
-                  createBackground('beautiful_wedding_details_2'),
-                  createBackground('elegant_wedding_couple_1'),
-                ],
-                onPageChanged: (index) {
-                  _currentPageNotifier.value = index;
-                  _currentPageProvider.setValue(index);
-                },
+      body: SafeArea(
+          child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            Expanded(
+                child: GestureDetector(
+                    onHorizontalDragDown: (details) {
+                      _isBackgroundTouchControlled = true;
+                    },
+                    child: PageView(
+                      controller: _backgroundPageController,
+                      children: [
+                        onboarding(
+                            'onboarding_picture1',
+                            'Start planning with us!',
+                            'Weddy is the all-in-one app that you need to plan your dream Wedding.'),
+                        onboarding('onboarding_picture2', 'Everything you need',
+                            'Plan easy and simple with our Wedding Timeline,\nChecklist and find the best suppliers.'),
+                        createBackground('onboarding_picture3'),
+                      ],
+                      onPageChanged: (index) {
+                        _currentPageNotifier.value = index;
+                        _currentPageProvider.setValue(index);
+                      },
+                    ))),
+            SizedBox(
+              height: 50,
+              child: GenericProvider.createWidget<int>(
+                provider: _currentPageProvider,
+                (state) => state.value == 2
+                    ? const SizedBox()
+                    : CirclePageIndicator(
+                        size: 10,
+                        selectedSize: 10,
+                        dotSpacing: 24,
+                        dotColor: ColorItems.mysticRose,
+                        selectedDotColor: ColorItems.salmon,
+                        currentPageNotifier: _currentPageNotifier,
+                        itemCount: 3),
               ),
             ),
-            // top background gradient
-            widgetFactory.createBottomSheetContainer(
-                context, createBottomWidget(),
-                height: 362, margin: const EdgeInsets.fromLTRB(0, 43, 0, 36))
+            Row(
+              children: [
+                const Spacer(),
+                SizedBox(
+                    height: 50,
+                    child: GenericProvider.createWidget<int>(
+                      provider: _currentPageProvider,
+                      (state) => state.value == 2
+                          ? const SizedBox()
+                          : GestureDetector(
+                              behavior: HitTestBehavior.translucent,
+                              onTap: () {
+                                skip();
+                              },
+                              child: const AutoSizeText('SKIP',
+                                  style: TextItems.title5),
+                            ),
+                    )),
+                const SizedBox(
+                  width: 20,
+                )
+              ],
+            ),
           ],
-        ));
+        ),
+      )),
+    );
   }
 
   @override
   void dispose() {
     super.dispose();
     _backgroundPageController.dispose();
-    _sheetPageController.dispose();
     _currentPageNotifier.dispose();
     _currentPageProvider.dispose();
     _progressProvider.dispose();
   }
 
-  Widget createBackground(String image) {
-    return Container(
-      decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage('assets/background/$image.png'),
-              fit: BoxFit.fitWidth,
-              alignment: Alignment.topCenter)),
-    );
-  }
-
-  Widget createBottomWidget() {
-    return Stack(
-      fit: StackFit.passthrough,
+  Widget onboarding(String image, String title, String subTitle) {
+    return Column(
       children: [
-        GenericProvider.createWidget<int>(
-          provider: _currentPageProvider,
-          (state) => state.value == 2
-              ? const SizedBox()
-              : CirclePageIndicator(
-                  size: 10,
-                  selectedSize: 10,
-                  dotSpacing: 24,
-                  dotColor: ColorItems.mysticRose,
-                  selectedDotColor: ColorItems.salmon,
-                  currentPageNotifier: _currentPageNotifier,
-                  itemCount: 3),
+        const SizedBox(
+          height: 55,
         ),
-        createBottomSheetPage(),
-        createPageControllerWidget(),
-        Positioned(
-          left: 25,
-          bottom: 0,
-          child: GenericProvider.createWidget<int>(
-            provider: _currentPageProvider,
-            (state) => state.value == 0
-                ? const SizedBox()
-                : GestureDetector(
-                    onTap: () {
-                      previous();
-                    },
-                    child:
-                        Images.getIcon('icon_arrow', color: ColorItems.salmon),
-                  ),
-          ),
+        Container(
+          width: 266,
+          height: 380,
+          decoration: BoxDecoration(
+              border: Border.all(width: 1, color: ColorItems.spaceCadet),
+              borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(120),
+                  topRight: Radius.circular(120)),
+              image: DecorationImage(
+                  image: AssetImage('assets/Onboarding_pictures/$image.png'),
+                  fit: BoxFit.fitHeight,
+                  alignment: Alignment.topCenter)),
         ),
-        Positioned(
-          right: 25,
-          bottom: 0,
-          child: GenericProvider.createWidget<int>(
-            provider: _currentPageProvider,
-            (state) => state.value == 2
-                ? const SizedBox()
-                : GestureDetector(
-                    onTap: () {
-                      skip();
-                    },
-                    child: const AutoSizeText('SKIP', style: TextItems.title5),
-                  ),
-          ),
-        ),
+        Padding(
+            padding: const EdgeInsets.only(
+              left: 20,
+              top: 15,
+            ),
+            child: GestureDetector(
+              onHorizontalDragDown: (details) {
+                _isBackgroundTouchControlled = false;
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const SizedBox(height: 15),
+                  AutoSizeText(title,
+                      style: TextItems.heading2.copyWith(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w800,
+                          color: ColorItems.spaceCadet)),
+                  const SizedBox(height: 15),
+                  AutoSizeText(subTitle,
+                      style: TextItems.body3.copyWith(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: ColorItems.spaceCadet))
+                ],
+              ),
+            ))
       ],
     );
   }
 
-  Widget createBottomSheetPage() {
-    return SizedBox(
-        width: MediaQuery.of(context).size.width,
-        child: GestureDetector(
-            onHorizontalDragDown: (details) {
-              _isBackgroundTouchControlled = false;
-            },
-            child: PageView(
-              controller: _sheetPageController,
-              children: [
-                createWalkthrough("Start planning with us!",
-                    "Weddy is the all-in-one app that you need to plan your dream Wedding."),
-                createWalkthrough("Everything you need",
-                    "Plan easy and simple with our Wedding Timeline,\nChecklist and find the best suppliers."),
-                createLastWidget()
-              ],
-            )));
+  Widget createBackground(String image) {
+    return Column(
+      children: [
+        const SizedBox(height: 20.0),
+        Images.getIcon('Logo_weddy.png'),
+        const SizedBox(height: 20.0),
+        Padding(
+          padding: const EdgeInsets.only(bottom: 5.0),
+          child: Center(
+            child: Container(
+              width: 266,
+              height: 280,
+              decoration: BoxDecoration(
+                  border: Border.all(width: 1, color: ColorItems.spaceCadet),
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(120),
+                      topRight: Radius.circular(120)),
+                  image: DecorationImage(
+                      image:
+                          AssetImage('assets/Onboarding_pictures/$image.png'),
+                      fit: BoxFit.fitHeight,
+                      alignment: Alignment.topCenter)),
+            ),
+          ),
+        ),
+        createLastWidget()
+      ],
+    );
   }
 
   Widget createPageControllerWidget() {
@@ -192,7 +222,7 @@ class WalkthroughState extends State<WalkthroughPage> {
                     (state) => CircularProgressIndicator(
                         backgroundColor: ColorItems.mysticRose,
                         color: ColorItems.salmon,
-                        strokeWidth: 4,
+                        strokeWidth: 2,
                         value: state.value))),
             GenericProvider.createWidget<int>(
                 provider: _currentPageProvider,
@@ -206,14 +236,26 @@ class WalkthroughState extends State<WalkthroughPage> {
 
   Widget createWalkthrough(String subject, String description) {
     return Padding(
-      padding: const EdgeInsets.only(left: 24, top: 38, right: 24),
+      padding: const EdgeInsets.only(
+        left: 20,
+        top: 15,
+      ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          AutoSizeText(subject, style: TextItems.heading2),
-          const SizedBox(height: 8),
-          AutoSizeText(description, style: TextItems.body2)
+          const SizedBox(height: 15),
+          AutoSizeText(subject,
+              style: TextItems.heading2.copyWith(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w800,
+                  color: ColorItems.spaceCadet)),
+          const SizedBox(height: 15),
+          AutoSizeText(description,
+              style: TextItems.body3.copyWith(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: ColorItems.spaceCadet))
         ],
       ),
     );
@@ -222,13 +264,24 @@ class WalkthroughState extends State<WalkthroughPage> {
   Widget createLastWidget() {
     WidgetFactory widgetFactory = WidgetFactory();
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 62),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 32,
+      ),
       child: Column(
         children: [
-          const AutoSizeText("Welcome to Weddy!", style: TextItems.heading2),
-          const SizedBox(height: 15),
+          //const AutoSizeText("Welcome to Weddy!", style: TextItems.heading2),
+          const SizedBox(height: 40),
+          Text(
+            '마이 웨딩 디자인',
+            style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.w800,
+                color: HexColor('#3C3B62')),
+          ),
+          const SizedBox(height: 30),
           createSignupButton(widgetFactory),
-          const SizedBox(height: 12),
+
+          const SizedBox(height: 20),
           createLoginButton(widgetFactory)
         ],
       ),
@@ -264,3 +317,56 @@ class WalkthroughState extends State<WalkthroughPage> {
         duration: const Duration(milliseconds: 150), curve: Curves.linear);
   }
 }
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   WidgetFactory widgetFactory = WidgetFactory();
+  //   _start = MediaQuery.of(context).size.width;
+  //   _end = MediaQuery.of(context).size.width * 3;
+  //   _progressProvider.setValue((_start + 0.0) / _end);
+
+  //   return Scaffold(
+  //       backgroundColor: Colors.white,
+  //       body: Column(
+  //         children: <Widget>[
+  //           Expanded(
+  //             child: GestureDetector(
+  //               onHorizontalDragDown: (details) {
+  //                 _isBackgroundTouchControlled = true;
+  //               },
+  //               child: Container(
+  //                 child: PageView(
+  //                   controller: _backgroundPageController,
+  //                   children: [
+  //                     onboarding(
+  //                         'onboarding_picture1',
+  //                         'Start planning with us!',
+  //                         'Weddy is the all-in-one app that you need to plan your dream Wedding.'),
+  //                     onboarding('onboarding_picture2', 'Everything you need',
+  //                         'Plan easy and simple with our Wedding Timeline,\nChecklist and find the best suppliers.'),
+  //                     Column(
+  //                       //mainAxisAlignment: MainAxisAlignment.center,
+  //                       children: [
+  //                         const SizedBox(
+  //                           height: 100,
+  //                         ),
+  //                         Images.getIcon('Logo_weddy.png'),
+  //                         const SizedBox(
+  //                           height: 12,
+  //                         ),
+  //                         createBackground('onboarding_picture3'),
+  //                       ],
+  //                     ),
+  //                   ],
+  //                   onPageChanged: (index) {
+  //                     _currentPageNotifier.value = index;
+  //                     _currentPageProvider.setValue(index);
+  //                   },
+  //                 ),
+  //               ),
+  //             ),
+  //           ),
+  //           createBottomWidget()
+  //         ],
+  //       ));
+  // }

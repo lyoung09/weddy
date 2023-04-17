@@ -9,15 +9,13 @@ import 'bloc/profile_event.dart';
 import 'bloc/profile_state.dart';
 
 class ProfileFooterWidget extends BaseStatelessWidget {
-   ProfileFooterWidget({Key? key}) : super(key: key);
+  ProfileFooterWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ProfileBloc, ProfileState>(
-        builder: (context, state) {
-          return buildFooterWidget(context);
-        }
-    );
+    return BlocBuilder<ProfileBloc, ProfileState>(builder: (context, state) {
+      return buildFooterWidget(context);
+    });
   }
 
   Widget buildFooterWidget(BuildContext context) {
@@ -25,12 +23,11 @@ class ProfileFooterWidget extends BaseStatelessWidget {
     return Column(
       children: [
         ListTile(
-            title: widgetFactory.createDefaultButton(
-              context,
-              icon: Iconsax.user,
-              text: '프로필 수정',
-              onPressed: () => bloc.navigateProfileUpdate(ProfileDisplayType.update))
-        ),
+            title: widgetFactory.createDefaultButton(context,
+                icon: Iconsax.user,
+                text: '프로필 수정',
+                onPressed: () =>
+                    bloc.navigateProfileUpdate(ProfileDisplayType.update))),
         ListTile(
           // todo logout move to profile
           title: widgetFactory.createDefaultButton(context,
@@ -39,24 +36,24 @@ class ProfileFooterWidget extends BaseStatelessWidget {
               //onPressed: () => bloc.navigate(CallCenterPage.routeName)),
               onPressed: () => {}),
         ),
-        ListTile(
-          // todo logout move to profile
-          title: widgetFactory.createDefaultButton(context,
-              icon: Iconsax.logout,
-              text: '로그아웃',
-              onPressed: () => {
-                bloc.add(DeleteProfileEvent()),
-              }),
-        ),
-        ListTile(
-          // todo logout move to profile
-          title: widgetFactory.createDefaultButton(context,
-              icon: Iconsax.security_user,
-              text: '회원탈퇴',
-              onPressed: () => {
-                bloc.add(DeleteProfileEvent()),
-              }),
-        )
+        // ListTile(
+        // todo logout move to profile
+        //   title: widgetFactory.createDefaultButton(context,
+        //       icon: Iconsax.logout,
+        //       text: '로그아웃',
+        //       onPressed: () => {
+        //         bloc.add(DeleteProfileEvent()),
+        //       }),
+        // ),
+        // ListTile(
+        // todo logout move to profile
+        //   title: widgetFactory.createDefaultButton(context,
+        //       icon: Iconsax.security_user,
+        //       text: '회원탈퇴',
+        //       onPressed: () => {
+        //         bloc.add(DeleteProfileEvent()),
+        //       }),
+        // )
       ],
     );
   }

@@ -20,6 +20,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weddynew/screen/auth/verification/pin_code_verification_layout.dart';
+import 'package:weddynew/screen/auth/verification/timer/bloc/timer_bloc.dart';
+import 'package:weddynew/screen/auth/verification/timer/ticker.dart';
 
 import '../../../base/bloc/base_bloc.dart';
 import '../../../common/screen_common_widget.dart';
@@ -47,18 +49,27 @@ class PinCodeVerificationPage extends StatelessWidget {
 
     AuthBloc bloc = getIt.get(
         param1: AuthState(
-            verifyType: args.verifyType,
-            id: args.id,
-            password: args.password,
-            name: args.name,
-            phoneNumber: args.phoneNumber,
-            gender: args.gender));
+      verifyType: args.verifyType,
+      id: args.id,
+      password: args.password,
+      name: args.name,
+      phoneNumber: args.phoneNumber,
+      email: args.email,
+    ));
+
     final navEvent = bloc.navEvent;
     final popEvent = bloc.popEvent;
 
     bloc.snackBarEvent.addListener(() {
       if (bloc.snackBarEvent.value?.isNotEmpty == true) {
         screenCommonWidget.showSnackBar(context, bloc.snackBarEvent.value);
+      }
+    });
+
+    bloc.modalEvent.addListener(() {
+      if (bloc.modalEvent.value?.isNotEmpty == true) {
+        screenCommonWidget.showConfirmDialog(context,
+            message: bloc.modalEvent.value, icon: bloc.modalEvent.value);
       }
     });
 
@@ -86,15 +97,15 @@ class PinCodeVerificationPage extends StatelessWidget {
       }
     });
 
-    return Scaffold(
-      resizeToAvoidBottomInset: true,
-      appBar: widgetFactory.createDefaultAppBar(context),
-      body: MultiBlocProvider(providers: [
+    return MultiBlocProvider(
+      providers: [
         BlocProvider<AuthBloc>(
             create: (context) => bloc..add(AuthSmsVerifyInitEvent())),
-        BlocProvider<VerificationTimerBloc>(
-            create: (context) => VerificationTimerBloc())
-      ], child: SmsVerificationLayout()),
+        BlocProvider<TimerBloc>(
+            create: (context) => TimerBloc(ticker: getIt.get())
+              ..add(const TimerStarted(duration: 180)))
+      ],
+      child: SmsVerificationLayout(),
     );
   }
 }
@@ -106,6 +117,7 @@ class PinCodeVerificationArgs {
       this.id,
       this.password,
       this.name,
+      this.email,
       this.gender});
 
   static const typeSignUp = "signUp";
@@ -116,6 +128,7 @@ class PinCodeVerificationArgs {
   final String? id;
   final String? password;
   final String? name;
+  final String? email;
   final String phoneNumber;
   final int? gender;
 }

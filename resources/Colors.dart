@@ -1,7 +1,12 @@
 import 'dart:ui';
 
+import 'package:hexcolor/hexcolor.dart';
+
 class ColorItems {
   static const Color primary = Color(0xFFFE9C9A);
+  static HexColor mistyRose = HexColor('#FFEEEE');
+  static HexColor grayx11 = HexColor('#C7C8CC');
+
   static const Color secondarySpaceCadet = Color(0xFF3C3B62);
   static const Color secondarySpanishGray = Color(0xFFA49C9C);
   static const Color white = Color(0xFFFFFFFF);
@@ -17,7 +22,8 @@ class ColorItems {
   static const Color rhythm = Color(0xFF7E83A9);
   static const Color wildBlueYonder = Color(0xFFA7B5DE);
   static const Color blueWeb = Color(0xFFE9F1FE);
-
+  static const Color monocromatic = Color.fromRGBO(126, 131, 169, 0.0);
+  static const Color weddyNeutral = Color(0xFFA49C9C);
   // Neutral Colors
   static const Color cultured = Color(0xFFF5F3F4);
   static const Color mystic = Color(0xFFEDF2F4);

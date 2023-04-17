@@ -1,4 +1,3 @@
-
 enum BlocStatus { none, initialized, success, error, loading, next, finalize }
 
 extension BlocStatusX on BlocStatus {

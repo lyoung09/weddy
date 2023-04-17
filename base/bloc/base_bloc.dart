@@ -16,9 +16,15 @@ abstract class BaseBloc<EVENT, STATE extends BaseBlocState>
       GenericProvider(notifyValueChanged: false);
   final GenericProvider<PopEvent> popEvent =
       GenericProvider(notifyValueChanged: false);
+  final GenericProvider<String> modalEvent =
+      GenericProvider(notifyValueChanged: false);
 
   void showSnackBar(String message) {
     snackBarEvent.setValue(message);
+  }
+
+  void showModalBar(String message) {
+    modalEvent.setValue(message);
   }
 
   void showPopup(String message,

@@ -6,16 +6,16 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import '../../../../common/image_factory.dart';
 import '../../../../common/screen_common_widget.dart';
 import '../../../../common/service_category_enum.dart';
-import '../../../../model/timeline_group.dart';
-import '../../../../model/timeline_item.dart';
+
+import '../../../../model/timeline_model.dart';
 
 class TimeLineScrollWidget extends StatefulWidget {
-  final List<TimelineGroup> timeLineGroupList;
+  final WeddingTimeLine weddingTimeLine;
   final ItemScrollController itemScrollController;
   final ItemPositionsListener itemPostionsListener;
   const TimeLineScrollWidget(
       {super.key,
-      required this.timeLineGroupList,
+      required this.weddingTimeLine,
       required this.itemPostionsListener,
       required this.itemScrollController});
 
@@ -35,11 +35,11 @@ class _TimeLineScrollWidgetState extends State<TimeLineScrollWidget> {
   @override
   Widget build(BuildContext context) {
     return ScrollablePositionedList.builder(
+      key: widget.key,
       physics: const AlwaysScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemCount: widget.timeLineGroupList.length,
+      itemCount: widget.weddingTimeLine.timelineGrouplist.length,
       itemBuilder: (context, index) =>
-          buildItem(widget.timeLineGroupList[index]),
+          buildItem(widget.weddingTimeLine.timelineGrouplist[index]),
       itemScrollController: widget.itemScrollController,
       itemPositionsListener: widget.itemPostionsListener,
     );
@@ -56,7 +56,7 @@ class _TimeLineScrollWidgetState extends State<TimeLineScrollWidget> {
     }
   }
 
-  Widget buildItem(TimelineGroup timelineGroup) {
+  Widget buildItem(TimeLineGroup timelineGroup) {
     return Container(
       margin: const EdgeInsets.all(10.0),
       padding: const EdgeInsets.all(2.0),
@@ -94,7 +94,7 @@ class _TimeLineScrollWidgetState extends State<TimeLineScrollWidget> {
     );
   }
 
-  Widget createTimelineItem(TimelineItem item) {
+  Widget createTimelineItem(TimeLineItem item) {
     return Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),

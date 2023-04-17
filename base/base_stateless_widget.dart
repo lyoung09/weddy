@@ -13,3 +13,13 @@ abstract class BaseStatelessWidget extends StatelessWidget {
   void addBlocEvent<BLOC extends Bloc>(BuildContext context, dynamic event) =>
       context.read<BLOC>().add(event);
 }
+
+abstract class BaseStatefulWidget extends StatefulWidget {
+  BaseStatefulWidget({Key? key}) : super(key: key);
+
+  final WidgetFactory widgetFactory = WidgetFactory();
+  final ScreenCommonWidget screenCommonWidget = ScreenCommonWidget();
+
+  void addBlocEvent<BLOC extends Bloc>(BuildContext context, dynamic event) =>
+      context.read<BLOC>().add(event);
+}

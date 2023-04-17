@@ -1,3 +1,6 @@
+import 'dart:ffi';
+
+import 'package:weddynew/apis/biz/app_biz.pb.dart';
 import 'package:weddynew/common/consts.dart';
 import 'package:weddynew/common/service_category_enum.dart';
 import 'package:weddynew/model/user_item.dart';
@@ -6,186 +9,166 @@ import 'package:weddynew/model/family_link.dart';
 import '../model/checklist_detail.dart';
 import '../model/division.dart';
 import '../model/purchase/contract.dart';
+import '../model/timeline_model.dart';
 import '../model/vendor_category.dart';
 import '../model/vendor_service.dart';
-import '../model/timeline_group.dart';
-import '../model/timeline_item.dart';
+
 import 'dart:math';
 import 'dart:core';
 
 class DummyData {
-  static List<TimelineGroup> getTimelineData() {
-    List<TimelineGroup> groups = [];
+  static List<TimeLineGroup> getTimelineData() {
+    List<TimeLineGroup> groups = [];
 
     Random random = Random();
 
-    List<TimelineItem> items1 = [];
-    items1.add(TimelineItem(
-        itemId: 1,
-        checked: true,
-        title: "결혼식 지역, 날짜 선택",
-        desc: "결혼식 지역, 날짜 선택",
-        isMandatory: false,
-        assetIconName:
-            "assets/icons/${icons[random.nextInt(icons.length)]}.png"));
-    items1.add(TimelineItem(
-        itemId: 2,
-        checked: false,
-        title: "상견례 장소, 날짜 선택, 예약",
-        desc: "",
-        isMandatory: false,
-        assetIconName:
-            "assets/icons/${icons[random.nextInt(icons.length)]}.png"));
-    items1.add(TimelineItem(
-        itemId: 3,
-        checked: false,
-        title: "결혼식 예산 정하기",
-        isMandatory: false,
-        desc: "",
-        assetIconName:
-            "assets/icons/${icons[random.nextInt(icons.length)]}.png"));
-    items1.add(TimelineItem(
-        itemId: 4,
-        checked: false,
-        title: "결혼 체크리스트 작성",
-        desc: "",
-        isMandatory: true,
-        assetIconName:
-            "assets/icons/${icons[random.nextInt(icons.length)]}.png"));
-    items1.add(TimelineItem(
-        itemId: 5,
-        checked: true,
-        title: "웨딩홀 알아보기",
-        isMandatory: true,
-        desc: "",
-        assetIconName:
-            "assets/icons/${icons[random.nextInt(icons.length)]}.png"));
+    List<TimeLineItem> items1 = [];
 
-    List<TimelineItem> items2 = [];
-    items2.add(TimelineItem(
-        itemId: 1,
-        checked: false,
-        title: "신혼 여행지 정하기",
-        isMandatory: false,
-        desc: "",
-        assetIconName:
-            "assets/icons/${icons[random.nextInt(icons.length)]}.png"));
-    items2.add(TimelineItem(
-        itemId: 2,
-        checked: false,
-        title: "여권, 비자, 여권 사진",
-        isMandatory: false,
-        desc: "",
-        assetIconName:
-            "assets/icons/${icons[random.nextInt(icons.length)]}.png"));
-    items2.add(TimelineItem(
-        itemId: 3,
-        checked: false,
-        title: "혼수 품목 확인",
-        isMandatory: false,
-        desc: "",
-        assetIconName:
-            "assets/icons/${icons[random.nextInt(icons.length)]}.png"));
-    items2.add(TimelineItem(
-        itemId: 4,
-        checked: false,
-        title: "건강 검진",
-        isMandatory: false,
-        desc: "",
-        assetIconName:
-            "assets/icons/${icons[random.nextInt(icons.length)]}.png"));
-    items2.add(TimelineItem(
-        itemId: 5,
-        checked: false,
-        title: "다이어트 계획",
-        isMandatory: false,
-        desc: "",
-        assetIconName:
-            "assets/icons/${icons[random.nextInt(icons.length)]}.png"));
+    items1.add(TimeLineItem(
+      1,
+      "결혼식 지역, 날짜 선택",
+      "결혼식 지역, 날짜 선택",
+      "assets/icons/${icons[random.nextInt(icons.length)]}.png",
+      false,
+      true,
+    ));
+    items1.add(TimeLineItem(
+      2,
+      "상견례 장소, 날짜 선택, 예약",
+      "",
+      "assets/icons/${icons[random.nextInt(icons.length)]}.png",
+      false,
+      false,
+    ));
+    items1.add(TimeLineItem(
+      3,
+      "결혼식 예산 정하기",
+      "",
+      "assets/icons/${icons[random.nextInt(icons.length)]}.png",
+      false,
+      false,
+    ));
+    items1.add(TimeLineItem(
+      4,
+      "결혼 체크리스트 작성",
+      "",
+      "assets/icons/${icons[random.nextInt(icons.length)]}.png",
+      true,
+      false,
+    ));
+    items1.add(TimeLineItem(
+      5,
+      "웨딩홀 알아보기",
+      "",
+      "assets/icons/${icons[random.nextInt(icons.length)]}.png",
+      true,
+      true,
+    ));
 
-    items2.add(TimelineItem(
-        itemId: 6,
-        title: "웨딩홀 계약(폐백 확인)",
-        checked: false,
-        isMandatory: true,
-        desc: "",
-        assetIconName:
-            "assets/icons/${icons[random.nextInt(icons.length)]}.png"));
-    items2.add(TimelineItem(
-        itemId: 7,
-        checked: false,
-        title: "웨딩홀 음식 테스팅 확인",
-        isMandatory: false,
-        desc: "",
-        assetIconName:
-            "assets/icons/${icons[random.nextInt(icons.length)]}.png"));
+    List<TimeLineItem> items2 = [];
+    items2.add(TimeLineItem(
+      1,
+      "신혼 여행지 정하기",
+      "",
+      "assets/icons/${icons[random.nextInt(icons.length)]}.png",
+      false,
+      false,
+    ));
+    items2.add(TimeLineItem(
+      2,
+      "여권, 비자, 여권 사진",
+      "",
+      "assets/icons/${icons[random.nextInt(icons.length)]}.png",
+      false,
+      false,
+    ));
+    items2.add(TimeLineItem(
+      3,
+      "혼수 품목 확인",
+      "",
+      "assets/icons/${icons[random.nextInt(icons.length)]}.png",
+      false,
+      false,
+    ));
+    items2.add(TimeLineItem(
+      4,
+      "건강 검진",
+      "",
+      "assets/icons/${icons[random.nextInt(icons.length)]}.png",
+      false,
+      false,
+    ));
+    items2.add(TimeLineItem(
+      5,
+      "다이어트 계획",
+      "",
+      "assets/icons/${icons[random.nextInt(icons.length)]}.png",
+      false,
+      false,
+    ));
 
-    List<TimelineItem> items3 = [];
-    items3.add(TimelineItem(
-        itemId: 1,
-        title: "헤어, 메이크업 확인 및 방문",
-        isMandatory: true,
-        desc: "",
-        checked: true,
-        assetIconName:
-            "assets/icons/${icons[random.nextInt(icons.length)]}.png"));
-    items3.add(TimelineItem(
-        itemId: 2,
-        checked: false,
-        title: "식권 확인",
-        isMandatory: true,
-        desc: "",
-        assetIconName:
-            "assets/icons/${icons[random.nextInt(icons.length)]}.png"));
-    items3.add(TimelineItem(
-        itemId: 3,
-        checked: true,
-        title: "부케 확인",
-        isMandatory: true,
-        desc: "",
-        assetIconName:
-            "assets/icons/${icons[random.nextInt(icons.length)]}.png"));
-    items3.add(TimelineItem(
-        itemId: 4,
-        checked: false,
-        title: "피로연 장소 확인",
-        isMandatory: false,
-        desc: "",
-        assetIconName:
-            "assets/icons/${icons[random.nextInt(icons.length)]}.png"));
+    items2.add(TimeLineItem(
+      6,
+      "웨딩홀 계약(폐백 확인)",
+      "",
+      "assets/icons/${icons[random.nextInt(icons.length)]}.png",
+      false,
+      true,
+    ));
+    items2.add(TimeLineItem(
+      7,
+      "웨딩홀 음식 테스팅 확인",
+      "",
+      "assets/icons/${icons[random.nextInt(icons.length)]}.png",
+      false,
+      false,
+    ));
 
-    TimelineGroup group1 = TimelineGroup(
-        groupId: 1,
-        title: "D - 365",
-        subTitle: "결혼 준비를 시작하세요",
-        remainingDays: -365,
-        items: items1);
+    List<TimeLineItem> items3 = [];
+    items3.add(TimeLineItem(
+      1,
+      "헤어, 메이크업 확인 및 방문",
+      "",
+      "assets/icons/${icons[random.nextInt(icons.length)]}.png",
+      true,
+      true,
+    ));
+    items3.add(TimeLineItem(
+      2,
+      "식권 확인",
+      "",
+      "assets/icons/${icons[random.nextInt(icons.length)]}.png",
+      true,
+      false,
+    ));
+    items3.add(TimeLineItem(
+      3,
+      "부케 확인",
+      "",
+      "assets/icons/${icons[random.nextInt(icons.length)]}.png",
+      true,
+      true,
+    ));
+    items3.add(TimeLineItem(
+      4,
+      "피로연 장소 확인",
+      "",
+      "assets/icons/${icons[random.nextInt(icons.length)]}.png",
+      false,
+      false,
+    ));
 
-    TimelineGroup group2 = TimelineGroup(
-        groupId: 2,
-        title: "D - 180",
-        subTitle: "결혼식 준비중입니다",
-        remainingDays: -180,
-        items: items2);
+    TimeLineGroup group1 =
+        TimeLineGroup(1, "D - 365", "결혼 준비를 시작하세요", -365, items1);
 
-    TimelineGroup group3 = TimelineGroup(
-        groupId: 3,
-        title: "D - 60",
-        subTitle: "결혼식 준비중입니다",
-        remainingDays: -60,
-        items: items3);
-    TimelineGroup group4 = TimelineGroup(
-        groupId: 4,
-        title: "D - 30",
-        subTitle: "결혼식 준비중입니다",
-        remainingDays: -30,
-        items: items3);
-    TimelineGroup group5 = TimelineGroup(
-        groupId: 5,
-        title: "D - Day",
-        subTitle: "결혼식 당일입니다",
-        remainingDays: 0,
-        items: items3);
+    TimeLineGroup group2 =
+        TimeLineGroup(2, "D - 180", "결혼식 준비중입니다", -180, items2);
+
+    TimeLineGroup group3 =
+        TimeLineGroup(3, "D - 60", "결혼식 준비중입니다", -60, items3);
+    TimeLineGroup group4 =
+        TimeLineGroup(4, "D - 30", "결혼식 준비중입니다", -30, items3);
+    TimeLineGroup group5 = TimeLineGroup(5, "D - Day", "결혼식 당일입니다", 0, items3);
 
     groups.add(group1);
     groups.add(group2);
@@ -522,6 +505,7 @@ class DummyData {
 
   static List<Division> getDivisions() {
     return [
+      Division(code: 99, displayName: "전국"),
       Division(code: 1, displayName: "서울"),
       Division(code: 2, displayName: "경기도"),
       Division(code: 3, displayName: "경상도"),
@@ -534,7 +518,7 @@ class DummyData {
       Division(code: 12, displayName: "광주광역시"),
       Division(code: 13, displayName: "울산광역시"),
       Division(code: 14, displayName: "대전광역시"),
-      Division(code: 15, displayName: "부산광역시")
+      Division(code: 15, displayName: "부산광역시"),
     ];
   }
 

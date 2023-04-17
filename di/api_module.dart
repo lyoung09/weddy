@@ -1,9 +1,13 @@
 import 'package:get_it/get_it.dart';
 import 'package:grpc/grpc.dart';
+import 'package:weddynew/service/budget_service.dart';
+import 'package:weddynew/service/category_service.dart';
+import 'package:weddynew/service/schedul_service.dart';
 
 import '../service/auth_service.dart';
 import '../service/biz_api_service.dart';
 import '../service/dress_api_service.dart';
+import '../service/memo_api_service.dart';
 import '../service/vendor_api_service.dart';
 import '../apis/auth/app_auth.pbgrpc.dart';
 import '../apis/biz/app_biz.pbgrpc.dart';
@@ -31,7 +35,11 @@ class ApiModule {
   void _provideApiService(GetIt getIt) {
     getIt.registerSingleton(AuthService(getIt.get(), getIt.get()));
     getIt.registerSingleton(BizApiService(getIt.get()));
-    getIt.registerSingleton(VendorApiService());
-    getIt.registerSingleton(DressApiService());
+    getIt.registerSingleton(VendorApiService(getIt.get()));
+    getIt.registerSingleton(DressApiService(getIt.get()));
+    getIt.registerSingleton(BudgetService(getIt.get()));
+    getIt.registerSingleton(CategoryService(getIt.get()));
+    //getIt.registerSingleton(ScheduleService(getIt.get()));
+    //getIt.registerSingleton(MemoApiService(getIt.get()));
   }
 }

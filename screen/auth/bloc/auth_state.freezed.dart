@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'auth_state.dart';
 
@@ -22,6 +22,7 @@ mixin _$AuthState {
   String? get password => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get phoneNumber => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
   int? get gender => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -41,6 +42,7 @@ abstract class $AuthStateCopyWith<$Res> {
       String? password,
       String? name,
       String? phoneNumber,
+      String? email,
       int? gender});
 }
 
@@ -63,6 +65,7 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
     Object? password = freezed,
     Object? name = freezed,
     Object? phoneNumber = freezed,
+    Object? email = freezed,
     Object? gender = freezed,
   }) {
     return _then(_value.copyWith(
@@ -90,6 +93,10 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
       gender: freezed == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
@@ -112,6 +119,7 @@ abstract class _$$_AuthStateCopyWith<$Res> implements $AuthStateCopyWith<$Res> {
       String? password,
       String? name,
       String? phoneNumber,
+      String? email,
       int? gender});
 }
 
@@ -132,6 +140,7 @@ class __$$_AuthStateCopyWithImpl<$Res>
     Object? password = freezed,
     Object? name = freezed,
     Object? phoneNumber = freezed,
+    Object? email = freezed,
     Object? gender = freezed,
   }) {
     return _then(_$_AuthState(
@@ -159,6 +168,10 @@ class __$$_AuthStateCopyWithImpl<$Res>
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String?,
+      email: freezed == email
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
       gender: freezed == gender
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
@@ -177,6 +190,7 @@ class _$_AuthState implements _AuthState {
       this.password,
       this.name,
       this.phoneNumber,
+      this.email,
       this.gender});
 
   @override
@@ -193,11 +207,13 @@ class _$_AuthState implements _AuthState {
   @override
   final String? phoneNumber;
   @override
+  final String? email;
+  @override
   final int? gender;
 
   @override
   String toString() {
-    return 'AuthState(status: $status, verifyType: $verifyType, id: $id, password: $password, name: $name, phoneNumber: $phoneNumber, gender: $gender)';
+    return 'AuthState(status: $status, verifyType: $verifyType, id: $id, password: $password, name: $name, phoneNumber: $phoneNumber, email: $email, gender: $gender)';
   }
 
   @override
@@ -214,12 +230,13 @@ class _$_AuthState implements _AuthState {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
+            (identical(other.email, email) || other.email == email) &&
             (identical(other.gender, gender) || other.gender == gender));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, status, verifyType, id, password, name, phoneNumber, gender);
+  int get hashCode => Object.hash(runtimeType, status, verifyType, id, password,
+      name, phoneNumber, email, gender);
 
   @JsonKey(ignore: true)
   @override
@@ -236,6 +253,7 @@ abstract class _AuthState implements AuthState {
       final String? password,
       final String? name,
       final String? phoneNumber,
+      final String? email,
       final int? gender}) = _$_AuthState;
 
   @override
@@ -250,6 +268,8 @@ abstract class _AuthState implements AuthState {
   String? get name;
   @override
   String? get phoneNumber;
+  @override
+  String? get email;
   @override
   int? get gender;
   @override

@@ -1,3 +1,5 @@
+import 'package:weddynew/apis/biz/app_biz.pb.dart';
+
 import 'response_code.dart';
 
 abstract class Result<DATA> {
@@ -6,7 +8,8 @@ abstract class Result<DATA> {
 }
 
 class Success<DATA> extends Result<DATA> {
-  Success(this.result, {int resultCode = ResponseCode.success}) : super(resultCode);
+  Success(this.result, {int resultCode = ResponseCode.success})
+      : super(resultCode);
   final DATA result;
 }
 

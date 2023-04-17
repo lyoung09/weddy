@@ -88,6 +88,7 @@ class WidgetFactory {
               ? IconButton(
                   icon: Images.getIcon('icon_arrow', color: ColorItems.salmon),
                   onPressed: () {
+                    debugPrint("hello world1");
                     Navigator.pop(context);
                   },
                 )
@@ -95,10 +96,45 @@ class WidgetFactory {
           title: title != null
               ? AutoSizeText(
                   title,
+                  style: TextItems.heading3.copyWith(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700,
+                      color: ColorItems.spaceCadet),
+                )
+              : null,
+          elevation: 0,
+        ));
+  }
+
+  PreferredSizeWidget createDetailAppBar(context,
+      {String? title, bool visibleBack = true, String? iconName, bool? check}) {
+    return PreferredSize(
+        preferredSize: const Size.fromHeight(52),
+        child: AppBar(
+          leading: visibleBack
+              ? IconButton(
+                  icon: Images.getIcon('icon_arrow', color: ColorItems.salmon),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                )
+              : null,
+          title: title != null
+              ? AutoSizeText(
+                  title.length >= 13 ? title.substring(0, 13) : title,
                   style: Theme.of(context).textTheme.headlineSmall,
                 )
               : null,
           elevation: 0,
+          actions: [
+            IconButton(
+              icon: Images.getIcon(iconName!,
+                  color: check == true
+                      ? ColorItems.spaceCadet
+                      : ColorItems.primary),
+              onPressed: () {},
+            )
+          ],
         ));
   }
 
@@ -121,13 +157,21 @@ class WidgetFactory {
       List<TextInputFormatter>? inputFormatters,
       ValueChanged<String>? onChanged,
       required TextEditingController textEditingController,
+      FocusNode? focusnode,
+      FocusNode? nextfocus,
+      VoidCallback? onSubmitted,
       String? labelText,
+      double? height,
       bool disable = false,
       GestureTapCallback? onTap}) {
-    return SizedBox(
-        height: 42,
+    return Container(
+        height: height ?? 42,
+        padding: const EdgeInsets.only(left: 16, right: 16),
         child: TextField(
             obscureText: passwordField,
+            // onSubmitted: focusnode != null&& nextfocus!=null
+            //     ? () => FocusScope.of(context).requestFocus(nextfocus)
+            //     : hello(),
             decoration: InputDecoration(
                 contentPadding: const EdgeInsets.only(left: 18, right: 18),
                 focusedBorder: const OutlineInputBorder(
@@ -143,6 +187,10 @@ class WidgetFactory {
                     ? Padding(padding: const EdgeInsets.all(9), child: suffix)
                     : null,
                 suffix: suffixWidget,
+                suffixStyle: TextItems.title8.copyWith(
+                    color: ColorItems.secondarySpanishGray,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 16),
                 labelText: labelText,
                 labelStyle: TextItems.title4
                     .copyWith(color: ColorItems.secondarySpanishGray),
@@ -153,17 +201,36 @@ class WidgetFactory {
             keyboardType: inputType,
             inputFormatters: inputFormatters,
             controller: textEditingController,
-            style: TextItems.title4,
+            style: TextItems.title4.copyWith(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+                color: ColorItems.spaceCadet),
             onChanged: onChanged,
             onTap: onTap,
-            focusNode: disable ? AlwaysDisabledFocusNode() : null,
+            focusNode: disable ? AlwaysDisabledFocusNode() : focusnode,
             enableInteractiveSelection: !disable));
+  }
+
+  Widget closeTextField(context,
+      {required TextEditingController textEditingController,
+      VoidCallback? onIconPressed,
+      String? labelText,
+      String? hintText}) {
+    return createDefaultTextField(context,
+        labelText: labelText,
+        hintText: hintText,
+        textEditingController: textEditingController);
   }
 
   Widget createPasswordTextField(context,
       {required bool passwordField,
       required TextEditingController textEditingController,
       required VoidCallback onIconPressed,
+      ValueChanged<String>? onChanged,
+      FocusNode? focusnode,
+      FocusNode? nextfocus,
+      Widget? suffix,
+      bool? disable,
       String? labelText,
       String? hintText}) {
     Widget icon;
@@ -180,8 +247,16 @@ class WidgetFactory {
             icon: icon,
             onPressed: onIconPressed),
         passwordField: passwordField,
+        // onSubmitted: focusnode != null && nextfocus!=null
+        //     ? () => FocusScope.of(context).requestFocus(nextfocus)
+        //     : hello(),
+        disable: disable ?? false,
+        focusnode: focusnode,
         labelText: labelText,
         hintText: hintText,
+        onChanged: onChanged,
+        nextfocus: nextfocus,
+        suffixWidget: suffix,
         textEditingController: textEditingController);
   }
 
@@ -335,8 +410,10 @@ class WidgetFactory {
       children: [
         AutoSizeText(
           text,
-          style:
-              TextItems.heading3.copyWith(color: textColor ?? ColorItems.white),
+          style: TextItems.heading3.copyWith(
+              color: textColor ?? ColorItems.white,
+              fontSize: 18,
+              fontWeight: FontWeight.w700),
           textAlign: TextAlign.center,
         )
       ],

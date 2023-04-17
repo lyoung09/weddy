@@ -12,3 +12,15 @@ class BrideDressImage {
       required this.numOfLikes,
       required this.vendorService});
 }
+
+class DressImageModel {
+  final int itemId;
+  final String vendorProfileId;
+  final String url;
+
+  DressImageModel(
+    this.itemId,
+    this.vendorProfileId,
+    this.url,
+  );
+}

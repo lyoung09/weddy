@@ -1,27 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:weddynew/apis/biz/app_biz.pbgrpc.dart';
 
 import '../../../common/cache_image_network.dart';
 import '../../../model/dress_image.dart';
+import '../../../resources/Colors.dart';
+import '../../../resources/Images.dart';
 import 'detail/dress_detail_page.dart';
 
 class DressShowroomItemWidget extends StatelessWidget {
-  const DressShowroomItemWidget({Key? key, required this.item}) : super(key: key);
+  const DressShowroomItemWidget({Key? key, required this.item})
+      : super(key: key);
 
-  final BrideDressImage item;
+  final ContentsItem item;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () {
-          Navigator.pushNamed(context, DressDetailPage.routeName, arguments: item.imageId);
+          debugPrint(item.itemId.toString() + "abcde");
+          Navigator.pushNamed(context, DressDetailPage.routeName,
+              arguments: item);
         },
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(8),
-          child: Container(
-            child: buildCacheNetworkImage(
-                height: 0, width: 0, url: item.imageUrl),
+        child: Container(
+          decoration: BoxDecoration(
+              border: Border.all(width: .4, color: ColorItems.spaceCadet),
+              borderRadius: const BorderRadius.all(Radius.circular(18))),
+          child: ClipRRect(
+            borderRadius: const BorderRadius.all(Radius.circular(18)),
+            child: buildCacheNetworkImage(height: 0, width: 250, url: item.url),
           ),
         ));
   }
-
 }

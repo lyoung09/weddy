@@ -2,7 +2,7 @@ class AccountUtils {
   bool availableUserId(String id) {
     if (id.trim().isEmpty) return false;
 
-    final regExp = RegExp(r'^[a-zA-Z0-9]{4,15}$');
+    RegExp regExp = RegExp(r"^[A-Za-z]+\d+.*$");
 
     return regExp.hasMatch(id);
   }

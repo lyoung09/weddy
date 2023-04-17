@@ -1,6 +1,6 @@
 ///
 //  Generated code. Do not modify.
-//  source: grpc/app_auth.proto
+//  source: app_auth.proto
 //
 // @dart = 2.12
 // ignore_for_file: annotate_overrides,camel_case_types,constant_identifier_names,directives_ordering,library_prefixes,non_constant_identifier_names,prefer_final_fields,return_of_invalid_type,unnecessary_const,unnecessary_import,unnecessary_this,unused_import,unused_shown_name
@@ -107,6 +107,7 @@ class ChangePasswordRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'ChangePasswordRequest', createEmptyInstance: create)
     ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'oldPassword', protoName: 'oldPassword')
     ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'newPassword', protoName: 'newPassword')
+    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'deviceId', protoName: 'deviceId')
     ..hasRequiredFields = false
   ;
 
@@ -114,6 +115,7 @@ class ChangePasswordRequest extends $pb.GeneratedMessage {
   factory ChangePasswordRequest({
     $core.String? oldPassword,
     $core.String? newPassword,
+    $core.String? deviceId,
   }) {
     final _result = create();
     if (oldPassword != null) {
@@ -121,6 +123,9 @@ class ChangePasswordRequest extends $pb.GeneratedMessage {
     }
     if (newPassword != null) {
       _result.newPassword = newPassword;
+    }
+    if (deviceId != null) {
+      _result.deviceId = deviceId;
     }
     return _result;
   }
@@ -162,5 +167,14 @@ class ChangePasswordRequest extends $pb.GeneratedMessage {
   $core.bool hasNewPassword() => $_has(1);
   @$pb.TagNumber(2)
   void clearNewPassword() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get deviceId => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set deviceId($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasDeviceId() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearDeviceId() => clearField(3);
 }
 

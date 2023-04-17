@@ -19,29 +19,29 @@
 
 import 'package:flutter/material.dart';
 
-
 import '../../../base/base_bloc_page.dart';
+
 import 'bloc/category_bloc.dart';
 import 'bloc/category_event.dart';
 import 'bloc/category_state.dart';
 import 'category_layout.dart';
 
 class CategoryPage extends BaseBlocPage<CategoryBloc, CategoryState> {
-   CategoryPage({Key? key}) : super(key: key);
+  CategoryPage({Key? key}) : super(key: key);
 
   static const String routeName = "/category";
 
   @override
   Widget buildPage(BuildContext context, Widget blocBody) {
     return Scaffold(
-      appBar: widgetFactory.createEmptyAppBar(context),
-      backgroundColor: Colors.white,
-      body: blocBody);
+        appBar: widgetFactory.createEmptyAppBar(context),
+        backgroundColor: Colors.white,
+        body: blocBody);
   }
 
   @override
   Widget buildWidget(BuildContext context, CategoryState state) =>
-       CategoryLayout();
+      CategoryLayout();
 
   @override
   initEvent() => InitCategoryEvent();

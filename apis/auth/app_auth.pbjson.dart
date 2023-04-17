@@ -1,6 +1,6 @@
 ///
 //  Generated code. Do not modify.
-//  source: grpc/app_auth.proto
+//  source: app_auth.proto
 //
 // @dart = 2.12
 // ignore_for_file: annotate_overrides,camel_case_types,constant_identifier_names,deprecated_member_use_from_same_package,directives_ordering,library_prefixes,non_constant_identifier_names,prefer_final_fields,return_of_invalid_type,unnecessary_const,unnecessary_import,unnecessary_this,unused_import,unused_shown_name
@@ -34,8 +34,9 @@ const ChangePasswordRequest$json = const {
   '2': const [
     const {'1': 'oldPassword', '3': 1, '4': 1, '5': 9, '10': 'oldPassword'},
     const {'1': 'newPassword', '3': 2, '4': 1, '5': 9, '10': 'newPassword'},
+    const {'1': 'deviceId', '3': 3, '4': 1, '5': 9, '10': 'deviceId'},
   ],
 };
 
 /// Descriptor for `ChangePasswordRequest`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List changePasswordRequestDescriptor = $convert.base64Decode('ChVDaGFuZ2VQYXNzd29yZFJlcXVlc3QSIAoLb2xkUGFzc3dvcmQYASABKAlSC29sZFBhc3N3b3JkEiAKC25ld1Bhc3N3b3JkGAIgASgJUgtuZXdQYXNzd29yZA==');
+final $typed_data.Uint8List changePasswordRequestDescriptor = $convert.base64Decode('ChVDaGFuZ2VQYXNzd29yZFJlcXVlc3QSIAoLb2xkUGFzc3dvcmQYASABKAlSC29sZFBhc3N3b3JkEiAKC25ld1Bhc3N3b3JkGAIgASgJUgtuZXdQYXNzd29yZBIaCghkZXZpY2VJZBgDIAEoCVIIZGV2aWNlSWQ=');

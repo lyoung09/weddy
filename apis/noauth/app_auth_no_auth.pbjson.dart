@@ -1,6 +1,6 @@
 ///
 //  Generated code. Do not modify.
-//  source: grpc/app_auth_no_auth.proto
+//  source: app_auth_no_auth.proto
 //
 // @dart = 2.12
 // ignore_for_file: annotate_overrides,camel_case_types,constant_identifier_names,deprecated_member_use_from_same_package,directives_ordering,library_prefixes,non_constant_identifier_names,prefer_final_fields,return_of_invalid_type,unnecessary_const,unnecessary_import,unnecessary_this,unused_import,unused_shown_name
@@ -8,6 +8,26 @@
 import 'dart:core' as $core;
 import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
+@$core.Deprecated('Use isDuplicatedIdRequestDescriptor instead')
+const IsDuplicatedIdRequest$json = const {
+  '1': 'IsDuplicatedIdRequest',
+  '2': const [
+    const {'1': 'userId', '3': 1, '4': 1, '5': 9, '10': 'userId'},
+  ],
+};
+
+/// Descriptor for `IsDuplicatedIdRequest`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List isDuplicatedIdRequestDescriptor = $convert.base64Decode('ChVJc0R1cGxpY2F0ZWRJZFJlcXVlc3QSFgoGdXNlcklkGAEgASgJUgZ1c2VySWQ=');
+@$core.Deprecated('Use isDuplicatedIdResponseDescriptor instead')
+const IsDuplicatedIdResponse$json = const {
+  '1': 'IsDuplicatedIdResponse',
+  '2': const [
+    const {'1': 'isDuplicatedId', '3': 1, '4': 1, '5': 8, '10': 'isDuplicatedId'},
+  ],
+};
+
+/// Descriptor for `IsDuplicatedIdResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List isDuplicatedIdResponseDescriptor = $convert.base64Decode('ChZJc0R1cGxpY2F0ZWRJZFJlc3BvbnNlEiYKDmlzRHVwbGljYXRlZElkGAEgASgIUg5pc0R1cGxpY2F0ZWRJZA==');
 @$core.Deprecated('Use signupRequestDescriptor instead')
 const SignupRequest$json = const {
   '1': 'SignupRequest',
@@ -18,22 +38,27 @@ const SignupRequest$json = const {
     const {'1': 'phoneNumber', '3': 4, '4': 1, '5': 9, '10': 'phoneNumber'},
     const {'1': 'relationshipCode', '3': 6, '4': 1, '5': 5, '10': 'relationshipCode'},
     const {'1': 'userPlatform', '3': 7, '4': 1, '5': 9, '10': 'userPlatform'},
+    const {'1': 'userEmail', '3': 8, '4': 1, '5': 9, '10': 'userEmail'},
+    const {'1': 'ceremonyDate', '3': 9, '4': 1, '5': 9, '10': 'ceremonyDate'},
+    const {'1': 'weddingBudget', '3': 10, '4': 1, '5': 3, '10': 'weddingBudget'},
+    const {'1': 'weddingAdminDivisionCode', '3': 11, '4': 1, '5': 3, '10': 'weddingAdminDivisionCode'},
+    const {'1': 'deviceId', '3': 12, '4': 1, '5': 9, '10': 'deviceId'},
+    const {'1': 'pushToken', '3': 13, '4': 1, '5': 9, '10': 'pushToken'},
   ],
 };
 
 /// Descriptor for `SignupRequest`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List signupRequestDescriptor = $convert.base64Decode('Cg1TaWdudXBSZXF1ZXN0EhYKBnVzZXJJZBgBIAEoCVIGdXNlcklkEhoKCHVzZXJOYW1lGAIgASgJUgh1c2VyTmFtZRIaCghwYXNzd29yZBgDIAEoCVIIcGFzc3dvcmQSIAoLcGhvbmVOdW1iZXIYBCABKAlSC3Bob25lTnVtYmVyEioKEHJlbGF0aW9uc2hpcENvZGUYBiABKAVSEHJlbGF0aW9uc2hpcENvZGUSIgoMdXNlclBsYXRmb3JtGAcgASgJUgx1c2VyUGxhdGZvcm0=');
+final $typed_data.Uint8List signupRequestDescriptor = $convert.base64Decode('Cg1TaWdudXBSZXF1ZXN0EhYKBnVzZXJJZBgBIAEoCVIGdXNlcklkEhoKCHVzZXJOYW1lGAIgASgJUgh1c2VyTmFtZRIaCghwYXNzd29yZBgDIAEoCVIIcGFzc3dvcmQSIAoLcGhvbmVOdW1iZXIYBCABKAlSC3Bob25lTnVtYmVyEioKEHJlbGF0aW9uc2hpcENvZGUYBiABKAVSEHJlbGF0aW9uc2hpcENvZGUSIgoMdXNlclBsYXRmb3JtGAcgASgJUgx1c2VyUGxhdGZvcm0SHAoJdXNlckVtYWlsGAggASgJUgl1c2VyRW1haWwSIgoMY2VyZW1vbnlEYXRlGAkgASgJUgxjZXJlbW9ueURhdGUSJAoNd2VkZGluZ0J1ZGdldBgKIAEoA1INd2VkZGluZ0J1ZGdldBI6Chh3ZWRkaW5nQWRtaW5EaXZpc2lvbkNvZGUYCyABKANSGHdlZGRpbmdBZG1pbkRpdmlzaW9uQ29kZRIaCghkZXZpY2VJZBgMIAEoCVIIZGV2aWNlSWQSHAoJcHVzaFRva2VuGA0gASgJUglwdXNoVG9rZW4=');
 @$core.Deprecated('Use signupResponseDescriptor instead')
 const SignupResponse$json = const {
   '1': 'SignupResponse',
   '2': const [
     const {'1': 'resultCode', '3': 1, '4': 1, '5': 5, '10': 'resultCode'},
-    const {'1': 'authToken', '3': 2, '4': 1, '5': 9, '10': 'authToken'},
   ],
 };
 
 /// Descriptor for `SignupResponse`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List signupResponseDescriptor = $convert.base64Decode('Cg5TaWdudXBSZXNwb25zZRIeCgpyZXN1bHRDb2RlGAEgASgFUgpyZXN1bHRDb2RlEhwKCWF1dGhUb2tlbhgCIAEoCVIJYXV0aFRva2Vu');
+final $typed_data.Uint8List signupResponseDescriptor = $convert.base64Decode('Cg5TaWdudXBSZXNwb25zZRIeCgpyZXN1bHRDb2RlGAEgASgFUgpyZXN1bHRDb2Rl');
 @$core.Deprecated('Use signinRequestDescriptor instead')
 const SigninRequest$json = const {
   '1': 'SigninRequest',
@@ -91,23 +116,3 @@ const AuthRequest$json = const {
 
 /// Descriptor for `AuthRequest`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List authRequestDescriptor = $convert.base64Decode('CgtBdXRoUmVxdWVzdBIgCgtwaG9uZU51bWJlchgBIAEoCVILcGhvbmVOdW1iZXISHAoJYXV0aFZhbHVlGAIgASgJUglhdXRoVmFsdWU=');
-@$core.Deprecated('Use isDuplicatedIdRequestDescriptor instead')
-const IsDuplicatedIdRequest$json = const {
-  '1': 'IsDuplicatedIdRequest',
-  '2': const [
-    const {'1': 'userId', '3': 1, '4': 1, '5': 9, '10': 'userId'},
-  ],
-};
-
-/// Descriptor for `IsDuplicatedIdRequest`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List isDuplicatedIdRequestDescriptor = $convert.base64Decode('ChVJc0R1cGxpY2F0ZWRJZFJlcXVlc3QSFgoGdXNlcklkGAEgASgJUgZ1c2VySWQ=');
-@$core.Deprecated('Use isDuplicatedIdResponseDescriptor instead')
-const IsDuplicatedIdResponse$json = const {
-  '1': 'IsDuplicatedIdResponse',
-  '2': const [
-    const {'1': 'isDuplicatedId', '3': 1, '4': 1, '5': 8, '10': 'isDuplicatedId'},
-  ],
-};
-
-/// Descriptor for `IsDuplicatedIdResponse`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List isDuplicatedIdResponseDescriptor = $convert.base64Decode('ChZJc0R1cGxpY2F0ZWRJZFJlc3BvbnNlEiYKDmlzRHVwbGljYXRlZElkGAEgASgIUg5pc0R1cGxpY2F0ZWRJZA==');

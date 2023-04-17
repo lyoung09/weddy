@@ -28,9 +28,9 @@ class AuthForgotAccountEvent extends AuthEvent {}
 class AuthForgotPasswordEvent extends AuthEvent {}
 
 class AuthSmsVerifyInitEvent extends AuthEvent {
-  // AuthSmsVerifyInitEvent(this.pinCode);
+  // AuthSmsVerifyInitEvent(this.phoneNumber);
 
-  // final String pinCode;
+  // final String phoneNumber;
 }
 
 class AuthSmsVerifyRefreshEvent extends AuthEvent {
@@ -40,7 +40,7 @@ class AuthSmsVerifyRefreshEvent extends AuthEvent {
 }
 
 class AuthSmsVerifyPinCodeEvent extends AuthEvent {
-  AuthSmsVerifyPinCodeEvent(this.pinCode);
+  // AuthSmsVerifyPinCodeEvent(this.pinCode);
 
-  final String pinCode;
+  // final String pinCode;
 }

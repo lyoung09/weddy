@@ -14,5 +14,6 @@ class AuthState extends BaseBlocState with _$AuthState {
       String? password,
       String? name,
       String? phoneNumber,
+      String? email,
       int? gender}) = _AuthState;
 }

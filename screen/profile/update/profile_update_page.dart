@@ -29,20 +29,26 @@ import '../bloc/profile_state.dart';
 
 typedef GetTagName = String Function(int index);
 
-class ProfileUpdatePage extends BaseBlocListenerPage<ProfileBloc, ProfileState> {
-  ProfileUpdatePage({Key? key, this.displayType = ProfileDisplayType.update}) : super(key: key);
+class ProfileUpdatePage
+    extends BaseBlocListenerPage<ProfileBloc, ProfileState> {
+  ProfileUpdatePage(
+      {Key? key,
+      this.displayType = ProfileDisplayType.update,
+      required this.args})
+      : super(key: key);
 
   static const String routeName = "/profile_update";
 
+  final ProfileUpdateArgs args;
   final ProfileDisplayType displayType;
-  late final ProfileUpdateWidget widget = ProfileUpdateWidget(displayType);
+  late final ProfileUpdateWidget widget =
+      ProfileUpdateWidget(displayType, args: args);
 
   @override
   Widget buildPage(BuildContext context, Widget blocBody) {
     return Scaffold(
-      appBar: widgetFactory.createDefaultAppBar(context, title: '기본정보 입력'),
-      body: blocBody
-    );
+        appBar: widgetFactory.createDefaultAppBar(context, title: '기본정보 입력'),
+        body: SingleChildScrollView(child: blocBody));
   }
 
   @override
@@ -59,4 +65,28 @@ class ProfileUpdatePage extends BaseBlocListenerPage<ProfileBloc, ProfileState> 
       widget.updateData(state.profile);
     }
   }
+}
+
+class ProfileUpdateArgs {
+  ProfileUpdateArgs(
+      {
+      //required this.verifyType,
+      required this.phoneNumber,
+      this.id,
+      this.password,
+      this.name,
+      this.email,
+      this.gender});
+
+  static const typeSignUp = "signUp";
+  static const typeForgotAccount = "forgotAccount";
+  static const typeForgotPassword = "forgotPassword";
+
+  //final String verifyType;
+  final String? id;
+  final String? password;
+  final String? name;
+  final String? email;
+  final String phoneNumber;
+  final int? gender;
 }

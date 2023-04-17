@@ -4,34 +4,33 @@ import 'package:weddynew/base/bloc/bloc_state.dart';
 
 import '../../../common/shimmer_loading.dart';
 import '../../../model/vendor_category.dart';
+import '../../../resources/Colors.dart';
+import '../../../resources/Text.dart';
 import 'bloc/category_bloc.dart';
 import 'bloc/category_state.dart';
-import 'category_item_widget.dart';
-
 
 class CategoryListLayout extends StatelessWidget {
-  const CategoryListLayout({Key? key}) : super(key: key);
+  final CategoryState state;
+  const CategoryListLayout({Key? key, required this.state}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CategoryBloc, CategoryState>(
-        builder: (context, state) {
-          return state.status.isSuccess ? Column(
+    var size = MediaQuery.of(context).size;
+    return state.status.isSuccess
+        ? Column(
             children: [
-              createGridTitle(context, "필수 항목"),
-              buildGridView(items: state.categories.primaryProductItems),
               const SizedBox(height: 10),
-              createGridTitle(context, "선택 항목"),
-              buildGridView(items: state.categories.secondaryProductItems),
+              createGridTitle(context, "전체 카테고리"),
+              const SizedBox(height: 10),
+              categoryGridview(size, context, state),
             ],
-          ) : ShimmerLoading().buildShimmerContent();
-        }
-    );
+          )
+        : ShimmerLoading().buildShimmerContent();
   }
 
   Widget createGridTitle(context, title) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
+      padding: const EdgeInsets.fromLTRB(25, 0, 0, 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -41,24 +40,64 @@ class CategoryListLayout extends StatelessWidget {
     );
   }
 
-  Widget buildGridView({required List<VendorCategoryItem> items}) {
-    return Padding(
-      padding: const EdgeInsets.all(4.0),
-      child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          elevation: 0,
-          child: GridView.count(
-              shrinkWrap: true,
-              primary: false,
-              physics: const NeverScrollableScrollPhysics(),
-              crossAxisSpacing: 5,
-              mainAxisSpacing: 5,
-              crossAxisCount: 3,
-              children: List.generate(items.length, (index) {
-                return CategoryItemWidget(items[index]);
-              }))),
+  Widget categoryGridview(size, context, CategoryState state) {
+    return Container(
+      width: size.width * .92,
+      height: 380,
+      padding: EdgeInsets.only(left: 5, right: 5, top: 10),
+      child: GridView.builder(
+        physics: const NeverScrollableScrollPhysics(),
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 5,
+            crossAxisSpacing: 2,
+            mainAxisSpacing: 5,
+            mainAxisExtent: 85, // here set custom Height You Want
+            childAspectRatio: 1 / 1.8),
+        itemCount: state.vendorCategoryList.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Column(
+            children: [
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushNamed('/vendor_list',
+                      arguments: state.vendorCategoryList[index]);
+                },
+                child: Container(
+                  width: 52,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(22),
+                    //color: Colors.white,
+                  ),
+                  child: Card(
+                    elevation: 5,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(22),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          state.vendorCategoryList[index].vendorIconImageUrl,
+                          width: 34,
+                          height: 34,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(state.vendorCategoryList[index].vendorServiceText,
+                  style: TextItems.body6
+                      .copyWith(fontSize: 10, color: ColorItems.spaceCadet)),
+            ],
+          );
+        },
+      ),
     );
   }
 }

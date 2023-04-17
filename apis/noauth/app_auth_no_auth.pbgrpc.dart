@@ -1,6 +1,6 @@
 ///
 //  Generated code. Do not modify.
-//  source: grpc/app_auth_no_auth.proto
+//  source: app_auth_no_auth.proto
 //
 // @dart = 2.12
 // ignore_for_file: annotate_overrides,camel_case_types,constant_identifier_names,directives_ordering,library_prefixes,non_constant_identifier_names,prefer_final_fields,return_of_invalid_type,unnecessary_const,unnecessary_import,unnecessary_this,unused_import,unused_shown_name
@@ -20,6 +20,12 @@ class AppAuthServiceWithoutTokenClient extends $grpc.Client {
           '/AppAuthServiceWithoutToken/Signup',
           ($0.SignupRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) => $0.SignupResponse.fromBuffer(value));
+  static final _$isDuplicatedId =
+      $grpc.ClientMethod<$0.IsDuplicatedIdRequest, $0.IsDuplicatedIdResponse>(
+          '/AppAuthServiceWithoutToken/IsDuplicatedId',
+          ($0.IsDuplicatedIdRequest value) => value.writeToBuffer(),
+          ($core.List<$core.int> value) =>
+              $0.IsDuplicatedIdResponse.fromBuffer(value));
   static final _$signin =
       $grpc.ClientMethod<$0.SigninRequest, $0.SigninResponse>(
           '/AppAuthServiceWithoutToken/Signin',
@@ -49,12 +55,6 @@ class AppAuthServiceWithoutTokenClient extends $grpc.Client {
           ($0.AuthRequest value) => value.writeToBuffer(),
           ($core.List<$core.int> value) =>
               $1.AppResultResponse.fromBuffer(value));
-  static final _$isDuplicatedId =
-      $grpc.ClientMethod<$0.IsDuplicatedIdRequest, $0.IsDuplicatedIdResponse>(
-          '/AppAuthServiceWithoutToken/IsDuplicatedId',
-          ($0.IsDuplicatedIdRequest value) => value.writeToBuffer(),
-          ($core.List<$core.int> value) =>
-              $0.IsDuplicatedIdResponse.fromBuffer(value));
 
   AppAuthServiceWithoutTokenClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
@@ -64,6 +64,12 @@ class AppAuthServiceWithoutTokenClient extends $grpc.Client {
   $grpc.ResponseFuture<$0.SignupResponse> signup($0.SignupRequest request,
       {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$signup, request, options: options);
+  }
+
+  $grpc.ResponseFuture<$0.IsDuplicatedIdResponse> isDuplicatedId(
+      $0.IsDuplicatedIdRequest request,
+      {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$isDuplicatedId, request, options: options);
   }
 
   $grpc.ResponseFuture<$0.SigninResponse> signin($0.SigninRequest request,
@@ -93,12 +99,6 @@ class AppAuthServiceWithoutTokenClient extends $grpc.Client {
       {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$verifyAuthSms, request, options: options);
   }
-
-  $grpc.ResponseFuture<$0.IsDuplicatedIdResponse> isDuplicatedId(
-      $0.IsDuplicatedIdRequest request,
-      {$grpc.CallOptions? options}) {
-    return $createUnaryCall(_$isDuplicatedId, request, options: options);
-  }
 }
 
 abstract class AppAuthServiceWithoutTokenServiceBase extends $grpc.Service {
@@ -112,6 +112,15 @@ abstract class AppAuthServiceWithoutTokenServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $0.SignupRequest.fromBuffer(value),
         ($0.SignupResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.IsDuplicatedIdRequest,
+            $0.IsDuplicatedIdResponse>(
+        'IsDuplicatedId',
+        isDuplicatedId_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) =>
+            $0.IsDuplicatedIdRequest.fromBuffer(value),
+        ($0.IsDuplicatedIdResponse value) => value.writeToBuffer()));
     $addMethod($grpc.ServiceMethod<$0.SigninRequest, $0.SigninResponse>(
         'Signin',
         signin_Pre,
@@ -151,20 +160,17 @@ abstract class AppAuthServiceWithoutTokenServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $0.AuthRequest.fromBuffer(value),
         ($1.AppResultResponse value) => value.writeToBuffer()));
-    $addMethod($grpc.ServiceMethod<$0.IsDuplicatedIdRequest,
-            $0.IsDuplicatedIdResponse>(
-        'IsDuplicatedId',
-        isDuplicatedId_Pre,
-        false,
-        false,
-        ($core.List<$core.int> value) =>
-            $0.IsDuplicatedIdRequest.fromBuffer(value),
-        ($0.IsDuplicatedIdResponse value) => value.writeToBuffer()));
   }
 
   $async.Future<$0.SignupResponse> signup_Pre(
       $grpc.ServiceCall call, $async.Future<$0.SignupRequest> request) async {
     return signup(call, await request);
+  }
+
+  $async.Future<$0.IsDuplicatedIdResponse> isDuplicatedId_Pre(
+      $grpc.ServiceCall call,
+      $async.Future<$0.IsDuplicatedIdRequest> request) async {
+    return isDuplicatedId(call, await request);
   }
 
   $async.Future<$0.SigninResponse> signin_Pre(
@@ -192,14 +198,10 @@ abstract class AppAuthServiceWithoutTokenServiceBase extends $grpc.Service {
     return verifyAuthSms(call, await request);
   }
 
-  $async.Future<$0.IsDuplicatedIdResponse> isDuplicatedId_Pre(
-      $grpc.ServiceCall call,
-      $async.Future<$0.IsDuplicatedIdRequest> request) async {
-    return isDuplicatedId(call, await request);
-  }
-
   $async.Future<$0.SignupResponse> signup(
       $grpc.ServiceCall call, $0.SignupRequest request);
+  $async.Future<$0.IsDuplicatedIdResponse> isDuplicatedId(
+      $grpc.ServiceCall call, $0.IsDuplicatedIdRequest request);
   $async.Future<$0.SigninResponse> signin(
       $grpc.ServiceCall call, $0.SigninRequest request);
   $async.Future<$1.AppResultResponse> forgotUserId(
@@ -210,6 +212,4 @@ abstract class AppAuthServiceWithoutTokenServiceBase extends $grpc.Service {
       $grpc.ServiceCall call, $0.AuthRequest request);
   $async.Future<$1.AppResultResponse> verifyAuthSms(
       $grpc.ServiceCall call, $0.AuthRequest request);
-  $async.Future<$0.IsDuplicatedIdResponse> isDuplicatedId(
-      $grpc.ServiceCall call, $0.IsDuplicatedIdRequest request);
 }

@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'budget_state.dart';
 
@@ -19,7 +19,7 @@ mixin _$BudgetState {
   BlocStatus get status => throw _privateConstructorUsedError;
   int get myBudget => throw _privateConstructorUsedError;
   int get totalAmount => throw _privateConstructorUsedError;
-  List<UserServiceItem> get services => throw _privateConstructorUsedError;
+  List<VendorServiceItem> get services => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $BudgetStateCopyWith<BudgetState> get copyWith =>
@@ -36,7 +36,7 @@ abstract class $BudgetStateCopyWith<$Res> {
       {BlocStatus status,
       int myBudget,
       int totalAmount,
-      List<UserServiceItem> services});
+      List<VendorServiceItem> services});
 }
 
 /// @nodoc
@@ -73,7 +73,7 @@ class _$BudgetStateCopyWithImpl<$Res, $Val extends BudgetState>
       services: null == services
           ? _value.services
           : services // ignore: cast_nullable_to_non_nullable
-              as List<UserServiceItem>,
+              as List<VendorServiceItem>,
     ) as $Val);
   }
 }
@@ -90,7 +90,7 @@ abstract class _$$_BudgetStateCopyWith<$Res>
       {BlocStatus status,
       int myBudget,
       int totalAmount,
-      List<UserServiceItem> services});
+      List<VendorServiceItem> services});
 }
 
 /// @nodoc
@@ -125,7 +125,7 @@ class __$$_BudgetStateCopyWithImpl<$Res>
       services: null == services
           ? _value._services
           : services // ignore: cast_nullable_to_non_nullable
-              as List<UserServiceItem>,
+              as List<VendorServiceItem>,
     ));
   }
 }
@@ -137,7 +137,7 @@ class _$_BudgetState implements _BudgetState {
       {this.status = BlocStatus.none,
       this.myBudget = 0,
       this.totalAmount = 0,
-      final List<UserServiceItem> services = const []})
+      final List<VendorServiceItem> services = const []})
       : _services = services;
 
   @override
@@ -149,10 +149,11 @@ class _$_BudgetState implements _BudgetState {
   @override
   @JsonKey()
   final int totalAmount;
-  final List<UserServiceItem> _services;
+  final List<VendorServiceItem> _services;
   @override
   @JsonKey()
-  List<UserServiceItem> get services {
+  List<VendorServiceItem> get services {
+    if (_services is EqualUnmodifiableListView) return _services;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_services);
   }
@@ -191,7 +192,7 @@ abstract class _BudgetState implements BudgetState {
       {final BlocStatus status,
       final int myBudget,
       final int totalAmount,
-      final List<UserServiceItem> services}) = _$_BudgetState;
+      final List<VendorServiceItem> services}) = _$_BudgetState;
 
   @override
   BlocStatus get status;
@@ -200,7 +201,7 @@ abstract class _BudgetState implements BudgetState {
   @override
   int get totalAmount;
   @override
-  List<UserServiceItem> get services;
+  List<VendorServiceItem> get services;
   @override
   @JsonKey(ignore: true)
   _$$_BudgetStateCopyWith<_$_BudgetState> get copyWith =>

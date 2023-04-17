@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'dress_detail_state.dart';
 
@@ -17,7 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$DressDetailState {
   BlocStatus get status => throw _privateConstructorUsedError;
-  BrideDressImage? get dressDetail => throw _privateConstructorUsedError;
+  GetVendorDressImageInfoResponse? get dressDetail =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $DressDetailStateCopyWith<DressDetailState> get copyWith =>
@@ -30,7 +31,7 @@ abstract class $DressDetailStateCopyWith<$Res> {
           DressDetailState value, $Res Function(DressDetailState) then) =
       _$DressDetailStateCopyWithImpl<$Res, DressDetailState>;
   @useResult
-  $Res call({BlocStatus status, BrideDressImage? dressDetail});
+  $Res call({BlocStatus status, GetVendorDressImageInfoResponse? dressDetail});
 }
 
 /// @nodoc
@@ -57,7 +58,7 @@ class _$DressDetailStateCopyWithImpl<$Res, $Val extends DressDetailState>
       dressDetail: freezed == dressDetail
           ? _value.dressDetail
           : dressDetail // ignore: cast_nullable_to_non_nullable
-              as BrideDressImage?,
+              as GetVendorDressImageInfoResponse?,
     ) as $Val);
   }
 }
@@ -70,7 +71,7 @@ abstract class _$$_DressDetailStateCopyWith<$Res>
       __$$_DressDetailStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({BlocStatus status, BrideDressImage? dressDetail});
+  $Res call({BlocStatus status, GetVendorDressImageInfoResponse? dressDetail});
 }
 
 /// @nodoc
@@ -95,7 +96,7 @@ class __$$_DressDetailStateCopyWithImpl<$Res>
       dressDetail: freezed == dressDetail
           ? _value.dressDetail
           : dressDetail // ignore: cast_nullable_to_non_nullable
-              as BrideDressImage?,
+              as GetVendorDressImageInfoResponse?,
     ));
   }
 }
@@ -109,7 +110,7 @@ class _$_DressDetailState implements _DressDetailState {
   @JsonKey()
   final BlocStatus status;
   @override
-  final BrideDressImage? dressDetail;
+  final GetVendorDressImageInfoResponse? dressDetail;
 
   @override
   String toString() {
@@ -138,13 +139,14 @@ class _$_DressDetailState implements _DressDetailState {
 
 abstract class _DressDetailState implements DressDetailState {
   factory _DressDetailState(
-      {final BlocStatus status,
-      final BrideDressImage? dressDetail}) = _$_DressDetailState;
+          {final BlocStatus status,
+          final GetVendorDressImageInfoResponse? dressDetail}) =
+      _$_DressDetailState;
 
   @override
   BlocStatus get status;
   @override
-  BrideDressImage? get dressDetail;
+  GetVendorDressImageInfoResponse? get dressDetail;
   @override
   @JsonKey(ignore: true)
   _$$_DressDetailStateCopyWith<_$_DressDetailState> get copyWith =>

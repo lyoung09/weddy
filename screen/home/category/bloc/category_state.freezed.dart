@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'category_state.dart';
 
@@ -17,7 +17,16 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$CategoryState {
   BlocStatus get status => throw _privateConstructorUsedError;
-  VendorCategory get categories => throw _privateConstructorUsedError;
+  VendorCategoryCustom get categories => throw _privateConstructorUsedError;
+  List<CategoryModel> get vendorCategoryList =>
+      throw _privateConstructorUsedError;
+  String get searchText => throw _privateConstructorUsedError;
+  GetVendorCategoryResponse? get getVendorCategoryResponse =>
+      throw _privateConstructorUsedError;
+  List<SearchVendorProfile> get searchVendorProfile =>
+      throw _privateConstructorUsedError;
+  int get historyIndex => throw _privateConstructorUsedError;
+  UserProfile? get user => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CategoryStateCopyWith<CategoryState> get copyWith =>
@@ -30,7 +39,15 @@ abstract class $CategoryStateCopyWith<$Res> {
           CategoryState value, $Res Function(CategoryState) then) =
       _$CategoryStateCopyWithImpl<$Res, CategoryState>;
   @useResult
-  $Res call({BlocStatus status, VendorCategory categories});
+  $Res call(
+      {BlocStatus status,
+      VendorCategoryCustom categories,
+      List<CategoryModel> vendorCategoryList,
+      String searchText,
+      GetVendorCategoryResponse? getVendorCategoryResponse,
+      List<SearchVendorProfile> searchVendorProfile,
+      int historyIndex,
+      UserProfile? user});
 }
 
 /// @nodoc
@@ -48,6 +65,12 @@ class _$CategoryStateCopyWithImpl<$Res, $Val extends CategoryState>
   $Res call({
     Object? status = null,
     Object? categories = null,
+    Object? vendorCategoryList = null,
+    Object? searchText = null,
+    Object? getVendorCategoryResponse = freezed,
+    Object? searchVendorProfile = null,
+    Object? historyIndex = null,
+    Object? user = freezed,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -57,7 +80,31 @@ class _$CategoryStateCopyWithImpl<$Res, $Val extends CategoryState>
       categories: null == categories
           ? _value.categories
           : categories // ignore: cast_nullable_to_non_nullable
-              as VendorCategory,
+              as VendorCategoryCustom,
+      vendorCategoryList: null == vendorCategoryList
+          ? _value.vendorCategoryList
+          : vendorCategoryList // ignore: cast_nullable_to_non_nullable
+              as List<CategoryModel>,
+      searchText: null == searchText
+          ? _value.searchText
+          : searchText // ignore: cast_nullable_to_non_nullable
+              as String,
+      getVendorCategoryResponse: freezed == getVendorCategoryResponse
+          ? _value.getVendorCategoryResponse
+          : getVendorCategoryResponse // ignore: cast_nullable_to_non_nullable
+              as GetVendorCategoryResponse?,
+      searchVendorProfile: null == searchVendorProfile
+          ? _value.searchVendorProfile
+          : searchVendorProfile // ignore: cast_nullable_to_non_nullable
+              as List<SearchVendorProfile>,
+      historyIndex: null == historyIndex
+          ? _value.historyIndex
+          : historyIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserProfile?,
     ) as $Val);
   }
 }
@@ -70,7 +117,15 @@ abstract class _$$_CategoryStateCopyWith<$Res>
       __$$_CategoryStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({BlocStatus status, VendorCategory categories});
+  $Res call(
+      {BlocStatus status,
+      VendorCategoryCustom categories,
+      List<CategoryModel> vendorCategoryList,
+      String searchText,
+      GetVendorCategoryResponse? getVendorCategoryResponse,
+      List<SearchVendorProfile> searchVendorProfile,
+      int historyIndex,
+      UserProfile? user});
 }
 
 /// @nodoc
@@ -86,6 +141,12 @@ class __$$_CategoryStateCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? categories = null,
+    Object? vendorCategoryList = null,
+    Object? searchText = null,
+    Object? getVendorCategoryResponse = freezed,
+    Object? searchVendorProfile = null,
+    Object? historyIndex = null,
+    Object? user = freezed,
   }) {
     return _then(_$_CategoryState(
       status: null == status
@@ -95,7 +156,31 @@ class __$$_CategoryStateCopyWithImpl<$Res>
       categories: null == categories
           ? _value.categories
           : categories // ignore: cast_nullable_to_non_nullable
-              as VendorCategory,
+              as VendorCategoryCustom,
+      vendorCategoryList: null == vendorCategoryList
+          ? _value._vendorCategoryList
+          : vendorCategoryList // ignore: cast_nullable_to_non_nullable
+              as List<CategoryModel>,
+      searchText: null == searchText
+          ? _value.searchText
+          : searchText // ignore: cast_nullable_to_non_nullable
+              as String,
+      getVendorCategoryResponse: freezed == getVendorCategoryResponse
+          ? _value.getVendorCategoryResponse
+          : getVendorCategoryResponse // ignore: cast_nullable_to_non_nullable
+              as GetVendorCategoryResponse?,
+      searchVendorProfile: null == searchVendorProfile
+          ? _value._searchVendorProfile
+          : searchVendorProfile // ignore: cast_nullable_to_non_nullable
+              as List<SearchVendorProfile>,
+      historyIndex: null == historyIndex
+          ? _value.historyIndex
+          : historyIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserProfile?,
     ));
   }
 }
@@ -105,18 +190,56 @@ class __$$_CategoryStateCopyWithImpl<$Res>
 class _$_CategoryState implements _CategoryState {
   _$_CategoryState(
       {this.status = BlocStatus.none,
-      this.categories = const VendorCategory([], [])});
+      this.categories = const VendorCategoryCustom([], []),
+      final List<CategoryModel> vendorCategoryList = const [],
+      this.searchText = '',
+      this.getVendorCategoryResponse,
+      final List<SearchVendorProfile> searchVendorProfile = const [],
+      this.historyIndex = 0,
+      this.user})
+      : _vendorCategoryList = vendorCategoryList,
+        _searchVendorProfile = searchVendorProfile;
 
   @override
   @JsonKey()
   final BlocStatus status;
   @override
   @JsonKey()
-  final VendorCategory categories;
+  final VendorCategoryCustom categories;
+  final List<CategoryModel> _vendorCategoryList;
+  @override
+  @JsonKey()
+  List<CategoryModel> get vendorCategoryList {
+    if (_vendorCategoryList is EqualUnmodifiableListView)
+      return _vendorCategoryList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_vendorCategoryList);
+  }
+
+  @override
+  @JsonKey()
+  final String searchText;
+  @override
+  final GetVendorCategoryResponse? getVendorCategoryResponse;
+  final List<SearchVendorProfile> _searchVendorProfile;
+  @override
+  @JsonKey()
+  List<SearchVendorProfile> get searchVendorProfile {
+    if (_searchVendorProfile is EqualUnmodifiableListView)
+      return _searchVendorProfile;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_searchVendorProfile);
+  }
+
+  @override
+  @JsonKey()
+  final int historyIndex;
+  @override
+  final UserProfile? user;
 
   @override
   String toString() {
-    return 'CategoryState(status: $status, categories: $categories)';
+    return 'CategoryState(status: $status, categories: $categories, vendorCategoryList: $vendorCategoryList, searchText: $searchText, getVendorCategoryResponse: $getVendorCategoryResponse, searchVendorProfile: $searchVendorProfile, historyIndex: $historyIndex, user: $user)';
   }
 
   @override
@@ -126,11 +249,32 @@ class _$_CategoryState implements _CategoryState {
             other is _$_CategoryState &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.categories, categories) ||
-                other.categories == categories));
+                other.categories == categories) &&
+            const DeepCollectionEquality()
+                .equals(other._vendorCategoryList, _vendorCategoryList) &&
+            (identical(other.searchText, searchText) ||
+                other.searchText == searchText) &&
+            (identical(other.getVendorCategoryResponse,
+                    getVendorCategoryResponse) ||
+                other.getVendorCategoryResponse == getVendorCategoryResponse) &&
+            const DeepCollectionEquality()
+                .equals(other._searchVendorProfile, _searchVendorProfile) &&
+            (identical(other.historyIndex, historyIndex) ||
+                other.historyIndex == historyIndex) &&
+            (identical(other.user, user) || other.user == user));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, categories);
+  int get hashCode => Object.hash(
+      runtimeType,
+      status,
+      categories,
+      const DeepCollectionEquality().hash(_vendorCategoryList),
+      searchText,
+      getVendorCategoryResponse,
+      const DeepCollectionEquality().hash(_searchVendorProfile),
+      historyIndex,
+      user);
 
   @JsonKey(ignore: true)
   @override
@@ -142,12 +286,30 @@ class _$_CategoryState implements _CategoryState {
 abstract class _CategoryState implements CategoryState {
   factory _CategoryState(
       {final BlocStatus status,
-      final VendorCategory categories}) = _$_CategoryState;
+      final VendorCategoryCustom categories,
+      final List<CategoryModel> vendorCategoryList,
+      final String searchText,
+      final GetVendorCategoryResponse? getVendorCategoryResponse,
+      final List<SearchVendorProfile> searchVendorProfile,
+      final int historyIndex,
+      final UserProfile? user}) = _$_CategoryState;
 
   @override
   BlocStatus get status;
   @override
-  VendorCategory get categories;
+  VendorCategoryCustom get categories;
+  @override
+  List<CategoryModel> get vendorCategoryList;
+  @override
+  String get searchText;
+  @override
+  GetVendorCategoryResponse? get getVendorCategoryResponse;
+  @override
+  List<SearchVendorProfile> get searchVendorProfile;
+  @override
+  int get historyIndex;
+  @override
+  UserProfile? get user;
   @override
   @JsonKey(ignore: true)
   _$$_CategoryStateCopyWith<_$_CategoryState> get copyWith =>

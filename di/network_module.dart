@@ -4,7 +4,7 @@ import 'package:grpc/grpc.dart';
 class NetworkModule {
   void provide(GetIt getIt) {
     getIt.registerFactory<ClientChannel>(() => ClientChannel(
-          "192.168.50.170",
+          "192.168.0.191",
           port: 6000,
           options:
               const ChannelOptions(credentials: ChannelCredentials.insecure()),

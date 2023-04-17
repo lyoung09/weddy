@@ -20,6 +20,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 import '../resources/Colors.dart';
+import '../resources/Images.dart';
+import '../resources/Text.dart';
 
 class ScreenCommonWidget {
   Future showProgressDialog(context) {
@@ -49,7 +51,10 @@ class ScreenCommonWidget {
     ));
   }
 
-  void showBottomSheet(context, {required Widget contents, bool visibleTopController = true, String? title}) {
+  void showBottomSheet(context,
+      {required Widget contents,
+      bool visibleTopController = true,
+      String? title}) {
     showModalBottomSheet<void>(
       context: context,
       shape: const RoundedRectangleBorder(
@@ -73,17 +78,19 @@ class ScreenCommonWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             visibleTopController
-            ? Container(
-              width: 52,
-              height: 4,
-              margin: const EdgeInsets.symmetric(vertical: 10.0),
-              decoration: const BoxDecoration(
-                color: ColorItems.secondarySpanishGray,
-                borderRadius: BorderRadius.all(Radius.circular(3)),
-              ),
-            )
-            : const SizedBox(height: 19),
-            Padding(padding: const EdgeInsets.only(left: 24, right: 24, bottom: 30), child: child),
+                ? Container(
+                    width: 52,
+                    height: 4,
+                    margin: const EdgeInsets.symmetric(vertical: 10.0),
+                    decoration: const BoxDecoration(
+                      color: ColorItems.secondarySpanishGray,
+                      borderRadius: BorderRadius.all(Radius.circular(3)),
+                    ),
+                  )
+                : const SizedBox(height: 19),
+            Padding(
+                padding: const EdgeInsets.only(left: 24, right: 24, bottom: 30),
+                child: child),
           ],
         );
       },
@@ -141,20 +148,50 @@ class ScreenCommonWidget {
         },
         child: const Text("확인"));
 
-    // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(18.0))),
+      content: Container(
+        width: MediaQuery.of(context).size.width * .6,
+        height: MediaQuery.of(context).size.height * .2,
+        padding: const EdgeInsets.only(left: 36, right: 36),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Spacer(),
+            Center(
+              child: Text(
+                message,
+                style: TextItems.heading4.copyWith(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                    color: ColorItems.spaceCadet),
+              ),
+            ),
+            const Spacer(),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      fixedSize: const Size(120, 36),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(24))),
+                  onPressed: () {
+                    Navigator.pop(context, true);
+                  },
+                  child: Text('확인',
+                      style: TextItems.title4.copyWith(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white))),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+          ],
+        ),
       ),
-      title: const Text(
-        '확인',
-        style: TextStyle(fontSize: 18),
-      ),
-      content: Text(message, style: const TextStyle(fontSize: 14)),
-      actions: [
-        cancelButton,
-        okButton,
-      ],
     );
 
     // show the dialog

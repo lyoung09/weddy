@@ -28,9 +28,11 @@ class UserProfileDao extends BaseDao {
       return UserProfile(
           name: map['name'],
           ceremonyDate: ceremonyDate,
+          userId: map['userId'],
+          userEmail: map['userEmail'],
+          phoneNumber: map['phoneNumber'].toString(),
           relationShipCode: map['relationShipCode'],
           divisionCode: map['divisionCode'],
-          numberOfGuest: map['numberOfGuest'] ?? 0,
           weddingBudget: map['weddingBudget'] ?? 0,
           hasPush: map['hasPush'] == 1,
           hasMarketingPush: map['hasMarketingPush'] == 1);
