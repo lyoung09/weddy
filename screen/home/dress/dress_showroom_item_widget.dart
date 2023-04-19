@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:weddynew/apis/biz/app_biz.pbgrpc.dart';
 
 import '../../../common/cache_image_network.dart';
-import '../../../model/dress_image.dart';
 import '../../../resources/Colors.dart';
-import '../../../resources/Images.dart';
 import 'detail/dress_detail_page.dart';
 
 class DressShowroomItemWidget extends StatelessWidget {

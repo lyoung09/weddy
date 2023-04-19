@@ -1,11 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:weddynew/apis/biz/app_biz.pb.dart';
-import 'package:weddynew/apis/result.dart';
 
 import '../../../../base/bloc/base_bloc.dart';
 import '../../../../base/bloc/bloc_state.dart';
-import '../../../../model/dress_image.dart';
 import '../../../../repository/dress_repository.dart';
 import 'dress_showroom_event.dart';
 import 'dress_showroom_state.dart';

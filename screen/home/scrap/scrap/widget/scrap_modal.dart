@@ -3,23 +3,20 @@ import 'package:email_validator/email_validator.dart';
 import 'package:fixnum/fixnum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
-import 'package:provider/provider.dart';
+
 import 'package:weddynew/apis/biz/app_biz.pbgrpc.dart';
 import 'package:weddynew/apis/category/category_data.dart';
-import 'package:weddynew/screen/home/home.dart';
-import 'package:weddynew/screen/home/scrap/first/bloc/scrap_bloc.dart';
-import 'package:weddynew/screen/home/scrap/first/bloc/scrap_statey.dart';
 import 'package:weddynew/screen/home/scrap/scrap/bloc/scrap_item_bloc.dart';
 import 'package:weddynew/screen/home/scrap/scrap/bloc/scrap_item_state.dart';
 import 'package:weddynew/utils/custom_string.dart';
 
 import '../../../../../apis/category/category_model.dart';
-import '../../../../../di/di_module.dart';
 import '../../../../../resources/Colors.dart';
 import '../../../../../resources/Images.dart';
 import '../../../../../resources/Text.dart';
 import '../../../util/check_modal.dart';
+import '../../bloc/scrap_bloc.dart';
+import '../../bloc/scrap_statey.dart';
 import '../check_model.dart';
 
 class ScrapModalFirst extends StatefulWidget {

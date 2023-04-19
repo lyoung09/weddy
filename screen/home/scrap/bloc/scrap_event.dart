@@ -2,7 +2,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:weddynew/apis/biz/app_biz.pbgrpc.dart';
 
-import 'package:weddynew/screen/home/scrap/first/model/notify.dart';
+import 'package:weddynew/screen/home/scrap/model/notify.dart';
 
 class ScrapEventY extends Equatable {
   @override

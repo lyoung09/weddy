@@ -1,8 +1,6 @@
 import 'dart:math';
 
-import 'package:flutter/foundation.dart';
 import 'package:weddynew/common/dummy_data.dart';
-import 'package:weddynew/service/schedul_service.dart';
 
 import '../apis/biz/app_biz.pb.dart';
 import '../apis/result.dart';

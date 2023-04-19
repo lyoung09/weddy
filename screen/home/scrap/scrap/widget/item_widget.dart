@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:weddynew/apis/biz/app_biz.pb.dart';
-import 'package:weddynew/screen/home/scrap/first/list_view.dart';
-import 'package:weddynew/screen/home/scrap/scrap/widget/check_tile.dart';
-
 import '../../../../../resources/Colors.dart';
 import '../../../../../resources/Images.dart';
 import '../../../../../resources/Text.dart';

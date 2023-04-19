@@ -4,16 +4,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:weddynew/apis/biz/app_biz.pbgrpc.dart';
 import 'package:weddynew/apis/preferences.dart';
-import 'package:weddynew/dao/search_history.dart';
 import 'package:weddynew/di/api_module.dart';
 import 'package:weddynew/di/weddy_database.dart';
-import 'package:weddynew/repository/budget_repository.dart';
 import 'package:weddynew/screen/auth/verification/timer/bloc/timer_bloc.dart';
 import 'package:weddynew/screen/auth/verification/timer/ticker.dart';
 import 'package:weddynew/screen/drawer/bloc/update_bloc.dart';
 import 'package:weddynew/screen/home/category/detail/bloc/detail_bloc.dart';
 import 'package:weddynew/screen/home/category/list/bloc/vendor_list_bloc.dart';
-import 'package:weddynew/screen/home/scrap/first/bloc/scrap_bloc.dart';
 import 'package:weddynew/screen/home/scrap/inquire/bloc/inquire_bloc.dart';
 
 import '../dao/user_profile_dao.dart';
@@ -26,8 +23,7 @@ import '../screen/app/bloc/app_bloc.dart';
 import '../screen/auth/bloc/auth_bloc.dart';
 import '../screen/auth/bloc/auth_state.dart';
 import '../screen/auth/signup/bloc/signup_bloc.dart';
-import '../screen/do_product/detail/bloc/product_detail_bloc.dart';
-import '../screen/home/budget/bloc/budget_bloc.dart';
+
 import '../screen/home/category/bloc/category_bloc.dart';
 import '../screen/home/category/like/bloc/like_bloc.dart';
 import '../screen/home/category/weddinghall/weddinghall_detail/bloc/weddinghall_bloc.dart';
@@ -78,7 +74,6 @@ void _provideRepository(GetIt getIt) {
   getIt.registerFactory(() => DressRepository(getIt.get()));
   getIt.registerFactory(() => VendorRepository(getIt.get()));
   getIt.registerFactory(() => ProductRepository(getIt.get(), getIt.get()));
-  getIt.registerFactory(() => BudgetRepository(getIt.get()));
   getIt.registerFactory(() => TimelineItem());
 }
 
@@ -96,10 +91,9 @@ void _provideBloc(GetIt getIt) {
       DressDetailBloc(repository: getIt.get(), productRepository: getIt.get()));
   getIt.registerFactory(() => DressShowroomBloc(getIt.get()));
   getIt.registerFactory(() => ProfileBloc(repository: getIt.get()));
-  getIt.registerFactory(() =>
-      BudgetBloc(userRepository: getIt.get(), budgetRepository: getIt.get()));
+
   getIt.registerFactory(() => CategoryBloc(repository: getIt.get()));
-  getIt.registerFactory(() => ProductDetailBloc(getIt.get()));
+
   getIt.registerFactory(() =>
       TimelineItemBloc(timelineItem: TimelineItem(), repository: getIt.get()));
   getIt.registerFactory(() => VendorDetailBloc(getIt.get(), getIt.get()));
@@ -107,8 +101,7 @@ void _provideBloc(GetIt getIt) {
       VendorListBloc(repository: getIt.get(), productRepository: getIt.get()));
 
   getIt.registerFactory(() => LikeListBloc(repository: getIt.get()));
-  getIt.registerFactory(() =>
-      ScrapBlocY(productRepository: getIt.get(), repository: getIt.get()));
+
   getIt.registerFactory(() => InquireBloc(repository: getIt.get()));
   getIt.registerFactory(() =>
       SimulationBloc(repository: getIt.get(), userRepository: getIt.get()));

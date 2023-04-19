@@ -19,8 +19,7 @@
  */
 
 import 'dart:async';
-import 'dart:io';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -28,10 +27,8 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:weddynew/apis/category/category_model.dart';
 import 'package:weddynew/di/di_module.dart';
 import 'package:weddynew/screen/app/WeddyApp.dart';
@@ -42,8 +39,6 @@ import 'package:weddynew/screen/auth/forgot/forgot_password.dart';
 import 'package:weddynew/screen/auth/signin/signin_page.dart';
 import 'package:weddynew/screen/auth/signup/signup_page.dart';
 import 'package:weddynew/screen/auth/verification/pin_code_verification_page.dart';
-import 'package:weddynew/screen/do_product/youtube_player_page.dart';
-import 'package:weddynew/screen/home/category/bloc/category_bloc.dart';
 import 'package:weddynew/screen/home/category/category_page.dart';
 import 'package:weddynew/screen/home/category/detail/vendor_detail_page.dart';
 import 'package:weddynew/screen/home/category/like/like_page.dart';
@@ -53,14 +48,12 @@ import 'package:weddynew/screen/home/category/search/suggestion_screen.dart';
 import 'package:weddynew/screen/home/category/weddinghall/weddinghall_detail/weddinghall_detail_page.dart';
 import 'package:weddynew/screen/home/home.dart';
 import 'package:weddynew/screen/home/dress/detail/dress_detail_page.dart';
-import 'package:weddynew/screen/profile/bloc/profile_display_type.dart';
 import 'package:weddynew/screen/profile/update/profile_update_page.dart';
 import 'package:weddynew/screen/themedata.dart';
 import 'package:weddynew/utils/horizontal_swiper.dart';
 import 'package:weddynew/utils/logger.dart';
 import 'apis/biz/app_biz.pb.dart';
 import 'global_variable.dart';
-import 'model/mobile_device.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
@@ -189,12 +182,7 @@ void main() async {
                     category: weddingHallDetail.category);
                 break;
               }
-            case YoutubePlayerPage.routeName:
-              {
-                widget =
-                    YoutubePlayerPage(videoId: settings.arguments as String);
-                break;
-              }
+
             case SearchScreen.routeName:
               {
                 SearchScreen searchScreen = settings.arguments as SearchScreen;

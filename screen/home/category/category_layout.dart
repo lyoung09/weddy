@@ -11,7 +11,6 @@ import '../../../model/search_history.dart';
 import '../../../resources/Colors.dart';
 import '../../../resources/Images.dart';
 import '../../../resources/Text.dart';
-import '../../bookmark/do_vendor.dart';
 import 'bloc/category_bloc.dart';
 import 'bloc/category_event.dart';
 import 'bloc/category_state.dart';

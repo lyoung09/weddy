@@ -1,23 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:weddynew/apis/biz/app_biz.pb.dart';
-import 'package:weddynew/base/bloc/bloc_state.dart';
-import 'package:weddynew/common/widget_factory.dart';
-import 'package:weddynew/screen/home/category/bloc/category_bloc.dart';
-import 'package:weddynew/screen/home/category/bloc/category_state.dart';
-import 'package:weddynew/screen/home/scrap/first/bloc/scrap_bloc.dart';
-import 'package:weddynew/screen/home/scrap/first/bloc/scrap_event.dart';
-import 'package:weddynew/screen/home/scrap/first/bloc/scrap_statey.dart';
-import 'package:weddynew/screen/home/scrap/first/model/notify.dart';
-import 'package:weddynew/screen/home/scrap/first/widget/scrap_modal.dart';
+
+import 'package:weddynew/screen/home/scrap/model/notify.dart';
 import 'package:weddynew/screen/home/scrap/inquire/inquire_list.dart';
 import 'package:weddynew/screen/home/scrap/scrap/scrap_view.dart';
 
 import '../../../resources/Colors.dart';
 import '../../../resources/Images.dart';
 import '../../../resources/Text.dart';
-import 'first/list_view.dart';
+import 'bloc/scrap_bloc.dart';
+import 'bloc/scrap_event.dart';
+import 'bloc/scrap_statey.dart';
 
 class ScrapTabView extends StatefulWidget {
   final ScrapStateY state;
@@ -162,19 +156,19 @@ class _ScrapTabViewState extends State<ScrapTabView>
                   .notifiyModelList
                   .where((element) => element.value == true)
                   .toList();
-              showModalBottomSheet(
-                  shape: const RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.vertical(top: Radius.circular(25.0))),
-                  backgroundColor: Colors.white,
-                  context: context,
-                  useSafeArea: true,
-                  isScrollControlled: true,
-                  builder: (_) => BlocProvider.value(
-                        value: BlocProvider.of<ScrapBlocY>(context),
-                        child: ScrapBottomModalFirst(
-                            totalPrice: totalPrice, nmList: nmList),
-                      ));
+              // showModalBottomSheet(
+              //     shape: const RoundedRectangleBorder(
+              //         borderRadius:
+              //             BorderRadius.vertical(top: Radius.circular(25.0))),
+              //     backgroundColor: Colors.white,
+              //     context: context,
+              //     useSafeArea: true,
+              //     isScrollControlled: true,
+              //     builder: (_) => BlocProvider.value(
+              //           value: BlocProvider.of<ScrapBlocY>(context),
+              //           child: ScrapBottomModalFirst(
+              //               totalPrice: totalPrice, nmList: nmList),
+              //         ));
             }
           },
           label: Text(

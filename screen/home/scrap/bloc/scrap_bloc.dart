@@ -5,9 +5,10 @@ import 'package:get/get.dart';
 import 'package:weddynew/apis/biz/app_biz.pb.dart';
 import 'package:weddynew/apis/result.dart';
 import 'package:weddynew/base/bloc/base_bloc.dart';
-import 'package:weddynew/screen/home/scrap/first/bloc/scrap_event.dart';
-import 'package:weddynew/screen/home/scrap/first/bloc/scrap_statey.dart';
-import 'package:weddynew/screen/home/scrap/first/model/notify.dart';
+import 'package:weddynew/screen/home/scrap/bloc/scrap_event.dart';
+import 'package:weddynew/screen/home/scrap/bloc/scrap_statey.dart';
+
+import 'package:weddynew/screen/home/scrap/model/notify.dart';
 
 import '../../../../../apis/category/category_data.dart';
 import '../../../../../base/bloc/bloc_state.dart';

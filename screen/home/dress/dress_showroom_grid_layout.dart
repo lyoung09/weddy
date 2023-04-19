@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:weddynew/apis/biz/app_biz.pb.dart';
 
-import '../../../model/dress_image.dart';
 import 'bloc/dress_showroom_bloc.dart';
 import 'dress_showroom_item_widget.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';

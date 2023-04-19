@@ -17,28 +17,19 @@
  * from Weddy.
  */
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 import 'package:weddynew/common/widget_factory.dart';
-import 'package:weddynew/model/vendor_service_detail.dart';
 import 'package:weddynew/repository/auth_repository.dart';
-import 'package:weddynew/screen/app/bloc/app_bloc.dart';
 import 'package:weddynew/screen/auth/signin/signin_page.dart';
 
 import 'package:weddynew/screen/drawer/screen/password_update.dart';
 import 'package:weddynew/screen/drawer/screen/user_update.dart';
 import 'package:weddynew/screen/home/young_timeline/bloc/timeline_state.dart';
 
-import '../../apis/preferences.dart';
-import '../../di/di_module.dart';
-import '../../resources/Colors.dart';
-import '../../resources/Images.dart';
-import '../../resources/Text.dart';
-import '../app/bloc/app_state.dart';
-import '../home/young_timeline/bloc/timeline_bloc.dart';
-import '../home/young_timeline/bloc/timeline_event.dart';
-import '../walkthrough/walkthrough_page.dart';
+import '../../../di/di_module.dart';
+import '../../../resources/Colors.dart';
+import '../../../resources/Images.dart';
+import '../../../resources/Text.dart';
 
 class ProfileScreen extends StatefulWidget {
   final BuildContext bloccontext;
@@ -53,8 +44,6 @@ class ProfileScreen extends StatefulWidget {
 
 class ProfileScreenState extends State<ProfileScreen> {
   final widgetFactory = WidgetFactory();
-
-  late VendorServiceDetail serviceProductDetail;
 
   @override
   void initState() {

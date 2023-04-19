@@ -23,20 +23,13 @@ import 'package:weddynew/common/widget_factory.dart';
 
 import 'package:weddynew/screen/home/scrap/scrap_page.dart';
 import 'package:weddynew/screen/home/simulation/simulation_page.dart';
-import 'package:weddynew/screen/home/timeline/timeline_page.dart';
-import 'package:weddynew/screen/home/young_timeline/timelineScreenYoung.dart';
+
 import 'package:weddynew/screen/home/young_timeline/timelineYoung.dart';
-import 'package:weddynew/screen/product/category_menu.dart';
 import '../../resources/Colors.dart';
-import '../checklist/check_list.dart';
-import 'budget/budget_simulator_page.dart';
 import 'category/category_page.dart';
-import 'category/detail/vendor_detail_page.dart';
 import 'dress/dress_showroom_page.dart';
-import 'timeline/timeline.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:badges/badges.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key, this.index}) : super(key: key);
@@ -72,10 +65,7 @@ class HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    // set initial pages for navigation to home page
-    // tabPageController = PageController(initialPage: 0);
-    // tabPageController.addListener(handleTabSelection);
-    debugPrint(widget.index.toString());
+  
     widget.index != null || widget.index != 0
         ? appBarTitle = appBarTitleItems[widget.index!]
         : appBarTitle = appBarTitleItems[0];
@@ -142,19 +132,7 @@ class HomePageState extends State<HomePage> {
   PreferredSizeWidget createAppBar() {
     return AppBar(
       iconTheme: IconThemeData(color: Theme.of(context).colorScheme.primary),
-      actions: <Widget>[
-        // Badge(
-        //   badgeColor: Colors.redAccent,
-        //   position: BadgePosition.topEnd(top: 10, end: 10),
-        //   child: IconButton(
-        //       iconSize: 24,
-        //       icon: Icon(
-        //         Iconsax.notification,
-        //         color: Theme.of(context).colorScheme.primary,
-        //       ),
-        //       onPressed: () => {}),
-        // )
-      ],
+
       elevation: 0,
       backgroundColor: Colors.transparent,
       systemOverlayStyle: SystemUiOverlayStyle.dark,

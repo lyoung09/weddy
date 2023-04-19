@@ -19,14 +19,12 @@ import '../../../../repository/auth_repository.dart';
 import '../../../../resources/Colors.dart';
 import '../../../../resources/Images.dart';
 import '../../../auth/signin/signin_page.dart';
-import '../../../drawer/notices.dart';
-import '../../../drawer/profile.dart';
-import '../../../drawer/push_messages.dart';
+
+import '../../../drawer/screen/profile.dart';
 import '../../../drawer/screen/alarm_setting.dart';
 import '../../../drawer/screen/customer_center.dart';
 import '../../../drawer/screen/oss_license.dart';
 import '../../../drawer/screen/terms_conditions.dart';
-import '../../../drawer/settings.dart';
 import '../bloc/timeline_bloc.dart';
 
 class SlideDrawer extends StatelessWidget {
